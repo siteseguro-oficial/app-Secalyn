@@ -15,452 +15,699 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
+:root{color-scheme:light;
   --wine:#7a1416;--wine2:#9c1f1f;--dark:#2a0607;--gold:#c99a2e;--gold2:#f0d27a;
-  --cream:#fbf6ec;--paper:#ffffff;--rose:#f5e6e1;--ink:#3b2a2a;--muted:#7d6a66;--line:#ead9bd;--water:#5b93bd;
+  --cream:#fbf6ec;--paper:#fff;--rose:#f7e9e4;--ink:#3b2a2a;--muted:#8a7570;--line:#efe2cc;--water:#4f8fc0;
   --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
   --sans:"Poppins",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  --safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px);
+  --sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px);
+  --shadow:0 6px 22px rgba(122,20,22,.08),0 1px 3px rgba(122,20,22,.06);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
-button{font:inherit;color:inherit}
+body{background:radial-gradient(1200px 600px at 100% 0%,#f8ead7 0%,transparent 60%),var(--cream);min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
 input,textarea{font:inherit;color:var(--ink);-webkit-text-fill-color:var(--ink)}
-:root{color-scheme:light}
-button{cursor:pointer;background:none;border:0}
-:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
-.app{max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:calc(84px + var(--safe-b));position:relative}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:8px}
+.press{transition:transform .15s ease}
+.press:active{transform:scale(.96)}
+.app{max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:calc(104px + var(--sb));position:relative}
 h1,h2,h3{font-family:var(--serif);color:var(--wine);font-weight:600;line-height:1.1}
-h2{font-size:24px;margin:28px 20px 12px}
-.pad{padding:0 20px}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;margin:26px 20px 12px}
+.sec-h h2{font-size:25px}
+.sec-h span{font-size:13px;color:var(--muted)}
+.card{background:var(--paper);margin:0 16px;border-radius:24px;padding:18px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
-/* topo */
-.hero{background:radial-gradient(ellipse at 80% 0%,#a32222 0%,var(--wine) 45%,var(--dark) 100%);color:#fff;padding:calc(18px + var(--safe-t)) 20px 26px;border-radius:0 0 28px 28px;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#b8862b,var(--gold2),#b8862b)}
-.brand{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:600;letter-spacing:.14em;color:#f5ead0;font-size:15px}
+/* ===== HERO ===== */
+.hero{background:radial-gradient(ellipse at 85% -10%,#b52828 0%,var(--wine) 42%,var(--dark) 100%);color:#fff;padding:calc(16px + var(--st)) 20px 30px;border-radius:0 0 34px 34px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:320px;height:320px;right:-120px;top:-140px;border-radius:50%;border:1px solid rgba(240,210,122,.18)}
+.hero::after{content:"";position:absolute;width:220px;height:220px;left:-90px;bottom:-120px;border-radius:50%;border:1px solid rgba(240,210,122,.14)}
+.topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:7px;font-family:var(--serif);font-weight:600;letter-spacing:.16em;color:#f5ead0;font-size:15px}
 .brand svg{width:22px;height:22px}
-.hero-top{display:flex;justify-content:space-between;align-items:center}
-.hello{font-size:13px;color:#f3e2dc}
-.dayline{display:flex;align-items:flex-end;justify-content:space-between;margin-top:18px}
-.phase{font-size:13px;color:var(--gold2)}
-.bigday{font-family:var(--serif);font-size:64px;line-height:.9;font-weight:600;color:#fff}
-.bigday small{font-size:22px;color:#f3e2dc;font-weight:500;margin-left:6px}
-.daynav{display:flex;gap:8px}
-.daynav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(240,210,122,.5);color:var(--gold2);display:grid;place-items:center}
+.avatar{width:36px;height:36px;border-radius:50%;background:rgba(240,210,122,.16);border:1px solid rgba(240,210,122,.45);display:grid;place-items:center;font-family:var(--serif);font-weight:700;color:var(--gold2);font-size:17px}
+.greet{position:relative;z-index:1;margin-top:18px}
+.greet small{font-size:13.5px;color:#f3d9d2}
+.greet h1{color:#fff;font-size:31px;margin-top:2px}
+.ringwrap{position:relative;z-index:1;display:flex;align-items:center;gap:16px;margin-top:16px}
+.ring{width:168px;height:168px;flex:none;position:relative}
+.ring svg{width:100%;height:100%}
+.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .c small{font-size:12px;color:#f3d9d2}
+.ring .c b{font-family:var(--serif);font-size:62px;line-height:.85;font-weight:600;color:#fff}
+.ring .c i{font-style:normal;font-size:12px;color:var(--gold2);margin-top:4px}
+.side{flex:1;display:flex;flex-direction:column;gap:9px}
+.mini{background:rgba(255,255,255,.08);border:1px solid rgba(240,210,122,.22);border-radius:16px;padding:9px 12px;display:flex;align-items:center;gap:10px}
+.mini .e{font-size:21px;line-height:1}
+.mini b{display:block;font-size:17px;font-weight:600;line-height:1.1}
+.mini span{font-size:11.5px;color:#f3d9d2}
+.phasebar{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:20px}
+.ph{font-size:11.5px;color:#f3d9d2}
+.ph .bar{height:6px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden;margin-bottom:5px}
+.ph .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:4px}
+.ph.cur{color:var(--gold2);font-weight:500}
+.daynav{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.daynav button{display:flex;align-items:center;gap:4px;font-size:13px;color:var(--gold2);padding:6px 4px}
 .daynav button:disabled{opacity:.3}
-.pills{display:grid;grid-template-columns:repeat(21,1fr);gap:3px;margin-top:18px}
-.pill{height:16px;border-radius:8px;border:1px solid rgba(240,210,122,.45);background:transparent;padding:0}
-.pill.on{background:linear-gradient(180deg,var(--gold2),#c99a2e);border-color:transparent}
-.pill.cur{box-shadow:0 0 0 2px #fff}
-.pills-leg{display:flex;justify-content:space-between;font-size:11.5px;color:#f3e2dc;margin-top:8px}
-.backtoday{margin-top:12px;font-size:13px;color:var(--gold2);text-decoration:underline}
-/* blocos */
-.block{background:var(--paper);margin:14px 16px 0;border-radius:20px;padding:18px}
-.block h3{font-size:21px;margin-bottom:10px}
-.capsbtn{width:100%;display:flex;align-items:center;gap:14px;padding:16px;border-radius:16px;border:1.5px solid var(--gold);background:#fffaf0;text-align:left;transition:background .2s}
-.capsbtn .cap{width:46px;height:24px;border-radius:12px;border:1.5px solid var(--gold);position:relative;flex:none;overflow:hidden}
-.capsbtn .cap::before{content:"";position:absolute;left:0;top:0;bottom:0;width:50%;background:var(--rose)}
-.capsbtn b{display:block;font-weight:600;color:var(--wine)}
-.capsbtn span{font-size:13px;color:var(--muted)}
-.capsbtn[aria-pressed=true]{background:linear-gradient(135deg,var(--wine),var(--dark));border-color:var(--wine)}
+.daynav .today{background:rgba(240,210,122,.16);padding:6px 12px;border-radius:20px}
+/* frase */
+.quote{margin:-18px 24px 0;position:relative;z-index:2;background:#fff;border-radius:20px;padding:14px 18px 14px 50px;box-shadow:var(--shadow);font-family:var(--serif);font-style:italic;font-size:17.5px;line-height:1.3;color:var(--wine)}
+.quote::before{content:"\201C";position:absolute;left:16px;top:2px;font-size:52px;color:var(--gold);font-style:normal}
+/* metas do dia */
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.goal{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--muted);text-align:center}
+.goal .gr{width:58px;height:58px;position:relative}
+.goal .gr svg{width:100%;height:100%;transform:rotate(-90deg)}
+.goal .gr span{position:absolute;inset:0;display:grid;place-items:center;font-size:22px}
+.goal.ok{color:var(--wine);font-weight:600}
+.complete{margin-top:14px;border-radius:16px;padding:12px 14px;background:linear-gradient(135deg,var(--gold2),#e3b84f);color:var(--dark);font-weight:600;font-size:14px;display:flex;gap:10px;align-items:center}
+/* cápsula */
+.capsbtn{width:100%;display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:22px;background:linear-gradient(135deg,#fffaf0,#fdf1dc);border:1.5px dashed var(--gold);text-align:left;position:relative;overflow:visible}
+.capsbtn .cap{width:64px;height:30px;flex:none;position:relative;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.capsbtn b{display:block;font-size:16px;font-weight:600;color:var(--wine)}
+.capsbtn small{font-size:12.5px;color:var(--muted);display:block;line-height:1.35}
+.capsbtn[aria-pressed=true]{background:linear-gradient(135deg,var(--wine),var(--dark));border:1.5px solid var(--wine)}
 .capsbtn[aria-pressed=true] b{color:var(--gold2)}
-.capsbtn[aria-pressed=true] span{color:#f3e2dc}
-.capsbtn[aria-pressed=true] .cap{background:linear-gradient(90deg,var(--gold2) 50%,#fff 50%);border-color:var(--gold2)}
-.capsbtn[aria-pressed=true] .cap::before{display:none}
-.water{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:6px}
-.glass{height:46px;border-radius:6px 6px 12px 12px;border:1.5px solid var(--water);position:relative;overflow:hidden;background:#fff}
-.glass::after{content:"";position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,#8fbadb,var(--water));transition:height .25s}
-.glass[aria-pressed=true]::after{height:78%}
-.wcount{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:8px}
-.task{display:flex;gap:14px;align-items:flex-start}
-.task p{flex:1;font-size:15.5px}
-.tick{width:32px;height:32px;border-radius:9px;border:1.5px solid var(--gold);flex:none;display:grid;place-items:center;color:transparent;background:#fff}
+.capsbtn[aria-pressed=true] small{color:#f3d9d2}
+.capsbtn[aria-pressed=true] .cap{transform:rotate(-18deg) scale(1.05)}
+.check-badge{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;background:var(--gold2);color:var(--dark);display:grid;place-items:center;font-weight:700}
+/* água */
+.waterbox{display:flex;gap:16px;align-items:center}
+.bottle{width:74px;flex:none}
+.bottle svg{width:100%;height:auto;display:block}
+.wave{animation:wave 3s linear infinite}
+@keyframes wave{from{transform:translateX(0)}to{transform:translateX(-40px)}}
+.wright{flex:1}
+.wright .big{font-family:var(--serif);font-size:38px;color:var(--water);font-weight:700;line-height:1}
+.wright .big small{font-size:16px;color:var(--muted);font-family:var(--sans);font-weight:400}
+.drops{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin-top:10px}
+.drop{height:34px;display:grid;place-items:center}
+.drop svg{width:22px;height:28px}
+.drop path{fill:#fff;stroke:var(--water);stroke-width:1.6;transition:fill .2s}
+.drop[aria-pressed=true] path{fill:var(--water)}
+.wbtns{display:flex;gap:8px;margin-top:10px}
+.wbtns button{flex:1;padding:9px;border-radius:12px;background:#eaf3fa;color:#2f6a96;font-weight:600;font-size:14px}
+/* tarefa */
+.task{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#fdf6ea,#fbecd2);border-radius:22px;padding:16px 18px;margin:0 16px;box-shadow:var(--shadow)}
+.task .ti{width:46px;height:46px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:24px;flex:none}
+.task p{flex:1;font-size:15px;line-height:1.4}
+.tick{width:34px;height:34px;border-radius:11px;border:2px solid var(--gold);flex:none;display:grid;place-items:center;color:transparent;background:#fff;transition:.2s}
 .tick[aria-pressed=true]{background:var(--wine);border-color:var(--wine);color:var(--gold2)}
-.meal{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
-.meal:first-of-type{border-top:0}
-.meal .ml{width:92px;flex:none;font-family:var(--serif);font-weight:700;font-size:17px;color:var(--wine)}
-.meal .mt{flex:1;font-size:14.5px}
-.rlink{color:var(--wine);font-weight:600;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;text-align:left;display:inline}
-.meal.hi .ml::after{content:"receita do dia";display:block;font-family:var(--sans);font-size:11px;font-weight:500;color:var(--gold);margin-top:2px}
-.rday{display:block;width:calc(100% - 32px);margin:14px 16px 0;text-align:left;border-radius:20px;padding:20px;background:linear-gradient(135deg,var(--wine),var(--dark));color:#fff;position:relative}
-.rday small{font-size:12.5px;color:var(--gold2)}
-.rday strong{display:block;font-family:var(--serif);font-size:26px;line-height:1.1;margin:4px 0 8px;font-weight:600}
-.rday span{font-size:13px;color:#f3e2dc}
-.rday::after{content:"";position:absolute;right:18px;top:50%;width:10px;height:10px;border-top:2px solid var(--gold2);border-right:2px solid var(--gold2);transform:translateY(-50%) rotate(45deg)}
-.slider{width:100%;accent-color:var(--wine);margin-top:8px}
-.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
-textarea,input[type=text],input[type=date],input[type=search],input[inputmode]{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:15px}
-textarea{min-height:84px;resize:vertical;margin-top:10px}
+/* cardápio */
+.meals{display:flex;flex-direction:column;gap:10px;margin:0 16px}
+.meal{display:flex;align-items:center;gap:14px;background:#fff;border-radius:20px;padding:12px 14px;box-shadow:var(--shadow);text-align:left;width:100%}
+.meal .art{width:56px;height:56px;border-radius:17px;display:grid;place-items:center;font-size:30px;flex:none;position:relative}
+.meal .tx{flex:1;min-width:0}
+.meal .tx small{font-size:11.5px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.meal .tx b{display:block;font-weight:500;font-size:14.5px;line-height:1.3;color:var(--ink)}
+.meal .tx b em{font-style:normal;color:var(--wine);font-weight:600}
+.meal .go{color:var(--gold);flex:none}
+.tag{font-size:10.5px;padding:2px 8px;border-radius:10px;background:linear-gradient(135deg,var(--gold2),#d9ad4a);color:var(--dark);font-weight:600}
+/* cores das refeições */
+.m-cafe{background:linear-gradient(140deg,#fff3da,#f7d793)}
+.m-almoco{background:linear-gradient(140deg,#eef4e2,#bcd39a)}
+.m-lanche{background:linear-gradient(140deg,#fff0e3,#f7bd8f)}
+.m-jantar{background:linear-gradient(140deg,#f8e8e8,#dca7a7)}
+/* receita do dia destaque */
+.feature{display:block;width:calc(100% - 32px);margin:0 16px;text-align:left;border-radius:28px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
+.feature .fa{height:150px;position:relative;display:grid;place-items:center;font-size:84px;overflow:hidden}
+.feature .fa::before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:rgba(255,255,255,.35);right:-40px;top:-50px}
+.feature .fa::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.25);left:-30px;bottom:-40px}
+.feature .fa span{position:relative;z-index:1;filter:drop-shadow(0 8px 12px rgba(42,6,7,.18))}
+.feature .fa .fl{position:absolute;left:14px;top:14px;z-index:2;filter:none}
+.feature .fb{padding:14px 18px 18px}
+.feature .fb strong{display:block;font-family:var(--serif);font-size:26px;color:var(--wine);line-height:1.1;font-weight:600}
+.chipsrow{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.chipsrow span{font-size:12px;padding:4px 10px;border-radius:20px;background:#f6efe3;color:var(--ink)}
+/* humor */
+.moodrow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.mood{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0;border-radius:16px;background:#f8f1e6;font-size:11px;color:var(--muted)}
+.mood span{font-size:26px;line-height:1;filter:grayscale(.5);opacity:.8;transition:.2s}
+.mood[aria-pressed=true]{background:var(--wine);color:#fff}
+.mood[aria-pressed=true] span{filter:none;opacity:1;transform:scale(1.12)}
+textarea,input[type=text],input[type=date],input[type=search],input[inputmode]{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff;font-size:15px}
+textarea{min-height:80px;resize:vertical;margin-top:12px}
 textarea:focus,input:focus{outline:none;border-color:var(--gold)}
-.cta{display:block;width:100%;text-align:center;padding:15px;border-radius:14px;background:linear-gradient(135deg,var(--gold2),#d4a63c);color:var(--dark);font-weight:600;font-size:15.5px;text-decoration:none}
-.cta.alt{background:var(--wine);color:#fff}
-.banner{margin:14px 16px 0;border-radius:20px;padding:18px;background:var(--rose);border-left:4px solid var(--gold)}
-.banner b{font-family:var(--serif);font-size:20px;color:var(--wine);display:block;margin-bottom:4px}
-.banner p{font-size:14px;margin-bottom:12px}
-.toast{position:fixed;left:50%;bottom:calc(96px + var(--safe-b));transform:translateX(-50%) translateY(20px);background:var(--dark);color:var(--gold2);padding:10px 18px;border-radius:30px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:50;white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cta{display:block;width:100%;text-align:center;padding:15px;border-radius:16px;background:linear-gradient(135deg,var(--gold2),#d4a63c);color:var(--dark);font-weight:600;font-size:15.5px;text-decoration:none;box-shadow:0 6px 16px rgba(201,154,46,.3)}
+.cta.wine{background:linear-gradient(135deg,var(--wine2),var(--dark));color:#fff;box-shadow:0 6px 16px rgba(122,20,22,.25)}
+.cta.soft{background:#f3e9d9;color:var(--wine);box-shadow:none}
+.promo{margin:0 16px;border-radius:26px;padding:20px;background:radial-gradient(circle at 90% 10%,#b52828,var(--wine) 50%,var(--dark));color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.promo .pe{position:absolute;right:-6px;top:-8px;font-size:78px;opacity:.9;transform:rotate(12deg)}
+.promo b{font-family:var(--serif);font-size:24px;color:var(--gold2);display:block;line-height:1.1;max-width:75%}
+.promo p{font-size:13.5px;color:#f3d9d2;margin:6px 0 14px;max-width:80%}
+.hint{margin:0 16px;border-radius:22px;padding:16px 18px;background:#fff;box-shadow:var(--shadow);display:flex;gap:14px;align-items:center}
+.hint .he{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:26px;background:var(--rose);flex:none}
+.hint b{font-family:var(--serif);font-size:19px;color:var(--wine);display:block;line-height:1.1}
+.hint p{font-size:13px;color:var(--muted)}
+.hint .cta{width:auto;padding:10px 14px;font-size:13.5px;flex:none}
 /* nav */
-.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding-bottom:var(--safe-b);z-index:20}
-.nav-in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
-.nav button{padding:10px 0 9px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;color:var(--muted)}
-.nav svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.nav button[aria-current=page]{color:var(--wine);font-weight:600}
-/* páginas internas */
-.ptop{padding:calc(22px + var(--safe-t)) 20px 6px}
-.ptop h1{font-size:36px}
-.ptop p{color:var(--muted);font-size:14px;margin-top:4px}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 20px 4px;scrollbar-width:none}
+.nav{position:fixed;left:12px;right:12px;bottom:calc(10px + var(--sb));z-index:20;max-width:456px;margin:0 auto;background:rgba(42,6,7,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:26px;box-shadow:0 10px 30px rgba(42,6,7,.35);padding:6px}
+.nav-in{display:grid;grid-template-columns:repeat(5,1fr)}
+.nav button{padding:8px 0 6px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;color:#d8bcb6;border-radius:20px;transition:.2s}
+.nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav button[aria-current=page]{color:var(--dark);background:linear-gradient(135deg,var(--gold2),#d9ad4a);font-weight:600}
+/* páginas */
+.ptop{padding:calc(24px + var(--st)) 20px 4px;position:relative}
+.ptop h1{font-size:38px}
+.ptop p{color:var(--muted);font-size:14px;margin-top:2px}
+.ptop .pe{position:absolute;right:20px;top:calc(18px + var(--st));font-size:44px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 16px 4px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;padding:8px 14px;border-radius:30px;border:1.5px solid var(--line);font-size:13.5px;background:#fff}
-.chip[aria-pressed=true]{background:var(--wine);border-color:var(--wine);color:#fff}
-.seg{display:flex;margin:12px 16px 0;background:#f1e6d4;border-radius:12px;padding:4px}
-.seg button{flex:1;padding:9px 4px;border-radius:9px;font-size:13.5px;color:var(--muted)}
-.seg button[aria-pressed=true]{background:#fff;color:var(--wine);font-weight:600;box-shadow:0 1px 3px rgba(42,6,7,.12)}
-.rlist{padding:6px 16px 0}
-.ritem{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 4px;border-bottom:1px solid var(--line);text-align:left}
-.ritem b{font-family:var(--serif);font-size:19px;color:var(--wine);font-weight:600;display:block;line-height:1.15}
-.ritem span{font-size:12.5px;color:var(--muted)}
-.ritem i{font-style:normal;font-size:12px;color:var(--dark);background:linear-gradient(135deg,var(--gold2),#d9ad4a);padding:3px 9px;border-radius:20px;flex:none}
-.empty{padding:30px 20px;text-align:center;color:var(--muted)}
-/* folha de receita */
+.chip{flex:none;padding:8px 14px;border-radius:30px;background:#fff;font-size:13.5px;box-shadow:var(--shadow);display:flex;gap:6px;align-items:center}
+.chip[aria-pressed=true]{background:var(--wine);color:#fff}
+.search{margin:12px 16px 0;position:relative}
+.search input{padding-left:42px;border-radius:18px;border:0;box-shadow:var(--shadow)}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px 16px 0}
+.rc{background:#fff;border-radius:22px;overflow:hidden;text-align:left;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.rc .ra{height:96px;display:grid;place-items:center;font-size:50px;position:relative;overflow:hidden}
+.rc .ra::before{content:"";position:absolute;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.32);right:-30px;top:-40px}
+.rc .ra span{position:relative;filter:drop-shadow(0 5px 8px rgba(42,6,7,.15))}
+.rc .ra i{position:absolute;left:8px;top:8px;font-style:normal}
+.rc .rb{padding:10px 12px 13px}
+.rc .rb b{display:block;font-family:var(--serif);font-size:17.5px;line-height:1.12;color:var(--wine);font-weight:600}
+.rc .rb small{font-size:11.5px;color:var(--muted);display:block;margin-top:4px}
+.empty{padding:40px 20px;text-align:center;color:var(--muted)}
+.empty span{font-size:46px;display:block;margin-bottom:6px}
+/* folha */
 .sheet-bg{position:fixed;inset:0;background:rgba(42,6,7,.55);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
 .sheet-bg.open{opacity:1;pointer-events:auto}
-.sheet{position:fixed;left:0;right:0;bottom:0;max-width:480px;margin:0 auto;max-height:90vh;overflow-y:auto;background:var(--cream);border-radius:24px 24px 0 0;z-index:41;transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);padding:0 0 calc(24px + var(--safe-b))}
-.sheet.open{transform:translateY(0)}
-.sheet-h{position:sticky;top:0;background:var(--cream);padding:12px 20px 8px;display:flex;justify-content:space-between;align-items:center;z-index:1}
-.grab{width:40px;height:4px;border-radius:2px;background:#dccbb0;position:absolute;left:50%;top:6px;transform:translateX(-50%)}
-.close{width:36px;height:36px;border-radius:50%;background:#f1e6d4;display:grid;place-items:center;margin-left:auto}
-.sheet h1{font-size:32px;padding:0 20px}
-.meta{display:flex;gap:8px;flex-wrap:wrap;padding:10px 20px 4px}
-.meta span{font-size:12.5px;padding:4px 10px;border-radius:20px;border:1px solid var(--line);background:#fff}
-.sheet h4{font-family:var(--serif);font-size:20px;color:var(--wine);margin:18px 20px 8px}
-.sheet ul,.sheet ol{margin:0 20px 0 40px}
-.sheet li{margin-bottom:6px;font-size:15px}
-.sheet ul li::marker{color:var(--gold)}
-.sheet ol li::marker{color:var(--wine);font-weight:600}
-.tip{margin:18px 20px 0;background:var(--rose);border-radius:14px;padding:14px 16px;font-size:14px}
-.tip b{color:var(--wine)}
-.sheet .body{padding:0 20px}
-.sheet .body p{margin-bottom:12px}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-width:480px;margin:0 auto;max-height:92vh;overflow-y:auto;background:var(--cream);border-radius:30px 30px 0 0;z-index:41;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);padding:0 0 calc(28px + var(--sb))}
+.sheet:not(.open){visibility:hidden;transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s}
+.sheet.open{transform:translateY(0);visibility:visible}
+.close{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center;z-index:3;box-shadow:var(--shadow)}
+.grab{width:42px;height:5px;border-radius:3px;background:rgba(42,6,7,.2);position:absolute;left:50%;top:8px;transform:translateX(-50%);z-index:3}
+.shero{height:200px;display:grid;place-items:center;font-size:100px;position:relative;overflow:hidden}
+.shero::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.32);right:-70px;top:-90px}
+.shero::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.22);left:-40px;bottom:-60px}
+.shero span{position:relative;z-index:1;filter:drop-shadow(0 10px 14px rgba(42,6,7,.2))}
+.sbody{background:var(--cream);border-radius:28px 28px 0 0;margin-top:-26px;position:relative;padding:22px 20px 0}
+.sbody h1{font-size:33px}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.stats3 div{background:#fff;border-radius:16px;padding:10px;text-align:center;box-shadow:var(--shadow)}
+.stats3 span{font-size:20px;display:block}
+.stats3 b{font-size:13px;font-weight:600;display:block;color:var(--wine)}
+.stats3 small{font-size:11px;color:var(--muted)}
+.sbody h4{font-family:var(--serif);font-size:22px;color:var(--wine);margin:22px 0 10px}
+.ingl button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.ingl button .tick{width:24px;height:24px;border-radius:7px}
+.ingl button[aria-pressed=true] span:last-child{text-decoration:line-through;color:var(--muted)}
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:18px;padding:13px 14px;box-shadow:var(--shadow)}
+.step b{width:30px;height:30px;border-radius:50%;background:var(--wine);color:var(--gold2);display:grid;place-items:center;font-family:var(--serif);font-size:17px;flex:none}
+.step p{font-size:14.5px;padding-top:3px}
+.tipbox{margin-top:18px;border-radius:20px;padding:16px;background:linear-gradient(135deg,#fdf3e1,#f8e3e0);display:flex;gap:12px;font-size:14px}
+.tipbox span{font-size:26px}
+.tipbox b{color:var(--wine)}
+.sheet .plain{padding:calc(56px) 20px 0}
+.sheet .plain h1{font-size:34px;margin-bottom:6px}
 /* medidas */
-.mtable{width:100%;border-collapse:collapse}
-.mtable th{font-size:12px;font-weight:500;color:var(--muted);text-align:left;padding:0 4px 6px}
-.mtable td{padding:4px}
-.mtable td:first-child{font-family:var(--serif);font-weight:700;color:var(--wine);font-size:17px;white-space:nowrap;padding-right:8px}
-.mtable input{padding:10px 8px;text-align:center}
-.chart{width:100%;height:auto;display:block;margin-top:6px}
-.delta{display:flex;gap:10px;margin-top:12px}
-.delta div{flex:1;background:var(--rose);border-radius:14px;padding:12px;text-align:center}
-.delta b{display:block;font-family:var(--serif);font-size:26px;color:var(--wine);line-height:1.1}
-.delta span{font-size:12px;color:var(--muted)}
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 16px 0}
+.mc{background:#fff;border-radius:22px;padding:14px 10px;text-align:center;box-shadow:var(--shadow)}
+.mc span{font-size:24px;display:block}
+.mc b{display:block;font-family:var(--serif);font-size:29px;color:var(--wine);line-height:1.05;margin-top:4px}
+.mc b.down{color:#4d7a2e}
+.mc small{font-size:11.5px;color:var(--muted)}
+.seg{display:flex;margin:0 16px;background:#f1e5d1;border-radius:16px;padding:4px}
+.seg button{flex:1;padding:9px 4px;border-radius:12px;font-size:13.5px;color:var(--muted)}
+.seg button[aria-pressed=true]{background:#fff;color:var(--wine);font-weight:600;box-shadow:0 2px 6px rgba(42,6,7,.1)}
+.chart{width:100%;height:auto;display:block}
+.mday{display:flex;flex-direction:column;gap:10px;margin:0 16px}
+.md{background:#fff;border-radius:22px;padding:14px;box-shadow:var(--shadow)}
+.md-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.md-h b{font-family:var(--serif);font-size:21px;color:var(--wine)}
+.md-h span{font-size:12px;color:var(--muted)}
+.md-h .ok{color:#4d7a2e;font-weight:600}
+.md-in{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.md-in label{font-size:11.5px;color:var(--muted);display:block;margin-bottom:4px}
+.md-in input{text-align:center;padding:11px 6px;font-weight:600}
 /* compras */
-.group h3{font-size:20px;margin-bottom:4px}
+.prog{margin:12px 16px 0;background:#fff;border-radius:20px;padding:14px 16px;box-shadow:var(--shadow)}
+.prog .pt{display:flex;justify-content:space-between;font-size:13.5px}
+.prog .pt b{color:var(--wine)}
+.pbar{height:10px;border-radius:6px;background:#f3eadb;margin-top:8px;overflow:hidden}
+.pbar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--gold2),var(--gold));transition:width .3s}
+.group{margin:12px 16px 0;background:#fff;border-radius:22px;padding:14px 16px 6px;box-shadow:var(--shadow)}
+.group h3{font-size:21px;display:flex;gap:8px;align-items:center;margin-bottom:4px}
 .item{display:flex;align-items:center;gap:12px;width:100%;padding:11px 0;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
 .item:last-child{border-bottom:0}
-.item .tick{width:26px;height:26px;border-radius:7px}
-.item[aria-pressed=true] span{text-decoration:line-through;color:var(--muted)}
+.item .tick{width:26px;height:26px;border-radius:8px}
+.item[aria-pressed=true] span:last-child{text-decoration:line-through;color:var(--muted)}
 /* mais */
-.menu-list{margin:14px 16px 0;background:#fff;border-radius:20px;overflow:hidden}
-.menu-list button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:17px 18px;border-bottom:1px solid var(--line);text-align:left;font-size:15.5px}
-.menu-list button:last-child{border-bottom:0}
-.menu-list button::after{content:"";width:8px;height:8px;border-top:1.6px solid var(--gold);border-right:1.6px solid var(--gold);transform:rotate(45deg)}
-.danger{color:var(--wine2)}
-.pillar{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
-.pillar:last-child{border-bottom:0}
-.pnum{width:34px;height:34px;border-radius:50%;background:var(--wine);color:var(--gold2);font-family:var(--serif);font-weight:700;font-size:19px;display:grid;place-items:center;flex:none}
-.pillar b{color:var(--wine)}
+.badges{display:flex;gap:10px;overflow-x:auto;padding:4px 16px 8px;scrollbar-width:none}
+.badges::-webkit-scrollbar{display:none}
+.badge{flex:none;width:104px;background:#fff;border-radius:22px;padding:14px 8px;text-align:center;box-shadow:var(--shadow)}
+.badge .bi{width:56px;height:56px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;font-size:28px;background:#f2ebe0;filter:grayscale(1);opacity:.45}
+.badge.on .bi{background:radial-gradient(circle at 35% 30%,var(--gold2),var(--gold));filter:none;opacity:1;box-shadow:0 4px 12px rgba(201,154,46,.4)}
+.badge b{font-size:12px;font-weight:600;display:block;line-height:1.25;color:var(--ink)}
+.badge small{font-size:10.5px;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 16px}
+.tile{background:#fff;border-radius:22px;padding:16px;text-align:left;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-height:112px;text-decoration:none;color:var(--ink)}
+.tile .te{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:23px}
+.tile b{font-size:14.5px;font-weight:600;line-height:1.25}
+.tile small{font-size:12px;color:var(--muted);line-height:1.3}
+.tile.wine{background:linear-gradient(135deg,var(--wine2),var(--dark));color:#fff}
+.tile.wine small{color:#f3d9d2}
+.pillar{display:flex;gap:14px;background:#fff;border-radius:20px;padding:14px;box-shadow:var(--shadow);margin-bottom:10px}
+.pillar .pe2{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:25px;flex:none}
+.pillar b{color:var(--wine);font-family:var(--serif);font-size:19px;display:block}
 .pillar p{font-size:14px}
-.faq{padding:12px 0;border-bottom:1px solid var(--line)}
-.faq:last-child{border-bottom:0}
-.faq b{font-family:var(--serif);font-size:18px;color:var(--wine);display:block}
+.faq{background:#fff;border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);margin-bottom:10px}
+.faq b{font-family:var(--serif);font-size:18.5px;color:var(--wine);display:block}
 .faq p{font-size:14px}
-.q{margin-top:14px}
-.q label{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--wine)}
+.q{margin-top:16px}
+.q label{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--wine)}
 /* onboarding */
-.onb{min-height:100vh;background:radial-gradient(ellipse at 70% 10%,#a32222,var(--wine) 40%,var(--dark));color:#fff;padding:calc(50px + var(--safe-t)) 28px 40px;display:flex;flex-direction:column}
-.onb .brand{justify-content:center;font-size:20px}
+.onb{min-height:100vh;background:radial-gradient(ellipse at 75% 5%,#b52828,var(--wine) 40%,var(--dark));color:#fff;padding:calc(44px + var(--st)) 26px 40px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.onb::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:1px solid rgba(240,210,122,.16);right:-200px;top:-140px}
+.onb .brand{justify-content:center;font-size:20px;position:relative}
 .onb .brand svg{width:34px;height:34px}
-.onb h1{color:#fff;font-size:52px;text-align:center;margin-top:34px;line-height:.95}
+.float{position:relative;height:120px;margin-top:10px}
+.float span{position:absolute;font-size:44px;animation:fl 4s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(var(--r,0deg))}}
+.onb h1{color:#fff;font-size:50px;text-align:center;line-height:.95;position:relative}
 .onb h1 em{color:var(--gold2);font-size:64px;display:block}
-.onb p.lead{text-align:center;color:#f3e2dc;margin:18px 0 30px;font-size:15px}
-.onb label{display:block;font-size:13.5px;color:var(--gold2);margin:16px 0 6px}
-.onb input{background:#fff;border-color:transparent;color:var(--ink);-webkit-text-fill-color:var(--ink);opacity:1}
+.feat{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0 22px;position:relative}
+.feat span{font-size:12.5px;padding:6px 12px;border-radius:20px;background:rgba(255,255,255,.1);border:1px solid rgba(240,210,122,.3)}
+.onb label{display:block;font-size:13.5px;color:var(--gold2);margin:14px 0 6px;position:relative}
+.onb input{background:#fff;border-color:transparent;color:var(--ink);-webkit-text-fill-color:var(--ink);position:relative;border-radius:16px;min-height:50px}
 .onb input::placeholder{color:#a8958f;-webkit-text-fill-color:#a8958f}
-.onb input[type=date]{min-height:48px;-webkit-appearance:none;appearance:none;text-align:left}
-.onb input[type=date]::-webkit-date-and-time-value{text-align:left;color:var(--ink)}
-.onb .cta{margin-top:28px}
-.onb .fine{font-size:12px;color:#d8c2bc;text-align:center;margin-top:16px}
-.done{text-align:center;padding:10px 0}
-.done b{font-family:var(--serif);font-size:30px;color:var(--wine);display:block}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.onb input[type=date]{-webkit-appearance:none;appearance:none;text-align:left}
+.onb input[type=date]::-webkit-date-and-time-value{text-align:left}
+.onb .cta{margin-top:26px;position:relative}
+.onb .fine{font-size:12px;color:#d8c2bc;text-align:center;margin-top:14px;position:relative}
+/* confete e toast */
+.confetti{position:fixed;left:0;top:0;width:10px;height:14px;border-radius:2px;pointer-events:none;z-index:60;animation:conf 1.1s cubic-bezier(.2,.7,.4,1) forwards}
+@keyframes conf{0%{transform:translate(var(--x0),var(--y0)) rotate(0);opacity:1}100%{transform:translate(var(--x1),var(--y1)) rotate(var(--rot));opacity:0}}
+.toast{position:fixed;left:50%;bottom:calc(100px + var(--sb));transform:translateX(-50%) translateY(20px);background:#fff;color:var(--wine);padding:11px 18px;border-radius:30px;font-size:14px;font-weight:500;opacity:0;transition:.25s;pointer-events:none;z-index:50;white-space:nowrap;box-shadow:0 8px 24px rgba(42,6,7,.2)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.fade{animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+.plan{background:rgba(255,255,255,.08);border:1.5px solid rgba(240,210,122,.3);border-radius:20px;padding:12px 10px 12px;text-align:center;color:#fff;position:relative}
+.plan .jars{height:44px;display:flex;justify-content:center;align-items:flex-end;gap:2px;margin-bottom:6px}
+.plan .jars svg{width:16px;height:30px}
+.plan .jars.many svg{width:12px;height:24px}
+.plan b{display:block;font-family:var(--serif);font-size:20px;color:var(--gold2);line-height:1.1}
+.plan small{font-size:12px;color:#f3d9d2}
+.plan[aria-pressed=true]{background:linear-gradient(135deg,var(--gold2),#d4a63c);border-color:var(--gold2)}
+.plan[aria-pressed=true] b{color:var(--wine)}
+.plan[aria-pressed=true] small{color:var(--dark)}
+.plan .best{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;background:var(--gold2);color:var(--wine);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.other{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px;font-size:13px;color:#f3d9d2;position:relative}
+.other button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(240,210,122,.5);color:var(--gold2);font-size:18px}
+.other b{font-family:var(--serif);font-size:22px;color:#fff;min-width:28px;text-align:center}
+.summary{margin-top:14px;background:rgba(0,0,0,.18);border-radius:16px;padding:12px 14px;font-size:13.5px;color:#f3e2dc;text-align:center;position:relative}
+.summary b{color:var(--gold2)}
+.potbars{position:relative;z-index:1;display:flex;gap:4px;margin-top:20px}
+.potbars .pb{flex:1;height:7px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
+.potbars .pb i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold))}
+.potleg{position:relative;z-index:1;display:flex;justify-content:space-between;font-size:11.5px;color:#f3d9d2;margin-top:6px}
+.potleg b{color:var(--gold2);font-weight:500}
+.wnav{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.wnav button{width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:var(--shadow);color:var(--wine);font-size:18px}
+.wnav button:disabled{opacity:.3}
+.wnav b{font-family:var(--serif);font-size:22px;color:var(--wine)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="app" id="app"></div>
 <nav class="nav" id="nav" hidden><div class="nav-in">
 <button data-tab="hoje"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Hoje</button>
-<button data-tab="receitas"><svg viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2zM4 19a2 2 0 0 1 2-2h12"/><path d="M9 7h6M9 11h4"/></svg>Receitas</button>
+<button data-tab="receitas"><svg viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-1.5 1-1.5 1-3M12 7c0-1.5 1-1.5 1-3M16 7c0-1.5 1-1.5 1-3"/></svg>Receitas</button>
 <button data-tab="medidas"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg>Medidas</button>
 <button data-tab="compras"><svg viewBox="0 0 24 24"><path d="M5 7h14l-1.5 12h-11z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>Compras</button>
-<button data-tab="mais"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></svg>Mais</button>
+<button data-tab="mais"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>Mais</button>
 </div></nav>
 <div class="sheet-bg" id="sheetbg"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheettitle"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 /* ===== CONFIGURAÇÃO =====
-   Troque pelo link do checkout do Secalyn (usado no lembrete de recompra). */
+   Troque pelo link do checkout do Secalyn (botões de recompra). */
 const CHECKOUT_URL = "https://secalyn.com.br/";
 const SUPORTE = "suporte.secalyn@gmail.com";
 
 const DATA = {"recipes": [{"name": "Omelete de forno com legumes", "time": "20 min", "meal": "Jantar", "tags": ["jantar"], "yld": "", "ing": ["4 ovos", "1 xícara de legumes picados (abobrinha, tomate, cebola, espinafre)", "sal, pimenta e orégano"], "steps": ["Bata os ovos com sal, pimenta e orégano.", "Misture os legumes e coloque em uma forma untada.", "Asse a 200 °C por cerca de 20 minutos, até firmar."], "tip": "Proteína e legumes num jantar leve: a fome menor do fim do dia pede porção menor, e o omelete corta bem em pedaços.", "day": null}, {"name": "Iogurte com aveia e fruta", "time": "5 min", "meal": "Café da manhã", "tags": ["cafe"], "yld": "", "ing": ["1 pote de iogurte natural", "2 colheres de sopa de aveia em flocos", "meia fruta picada", "canela a gosto"], "steps": ["Misture tudo em um pote com tampa.", "Deixe na geladeira de um dia para o outro, ou coma na hora."], "tip": "A fibra da aveia se soma à do psyllium do Secalyn. Acompanhe com o copo de água das cápsulas.", "day": null}, {"name": "Crepioca de queijo branco", "time": "10 min", "meal": "Café da manhã", "tags": ["cafe"], "yld": "", "ing": ["1 ovo", "2 colheres de sopa de goma de tapioca", "1 fatia de queijo branco", "orégano"], "steps": ["Bata o ovo com a tapioca.", "Despeje em frigideira antiaderente quente e espere firmar.", "Vire, coloque o queijo e o orégano, e dobre ao meio."], "tip": "Uma porção pequena com proteína para começar o dia sem pesar.", "day": null}, {"name": "Frango desfiado temperado", "time": "30 min", "meal": "Almoço", "tags": ["almoco"], "yld": "", "ing": ["500 g de peito de frango", "1 cebola", "2 dentes de alho", "1 tomate", "sal, colorau e cheiro-verde"], "steps": ["Cozinhe o frango em água com sal até ficar macio. Desfie.", "Refogue cebola, alho e tomate, e junte o frango e o colorau.", "Finalize com cheiro-verde. Guarde em potes para a semana."], "tip": "A base da semana: entra no prato leve, na sopa e na salada. Com ele pronto, fica mais fácil manter a rotina.", "day": null}, {"name": "Legumes assados", "time": "30 min", "meal": "Almoço ou jantar", "tags": ["almoco", "jantar"], "yld": "", "ing": ["Abobrinha, cenoura, berinjela, cebola e brócolis", "um fio de azeite", "sal e ervas"], "steps": ["Corte os legumes em pedaços parecidos e tempere.", "Espalhe na assadeira sem amontoar.", "Asse a 220 °C por 25 a 30 minutos, mexendo na metade."], "tip": "Enche a metade do prato leve com fibra e volume, o par ideal das cápsulas.", "day": null}, {"name": "Sopa de legumes com frango", "time": "30 min", "meal": "Jantar", "tags": ["jantar"], "yld": "", "ing": ["1 xícara de frango desfiado", "1 cenoura", "1 chuchu", "1 abobrinha", "meia cebola", "alho", "sal e cheiro-verde"], "steps": ["Refogue cebola e alho e junte os legumes picados.", "Cubra com água e cozinhe por 20 minutos.", "Junte o frango e finalize com cheiro-verde."], "tip": "Hidrata e sacia ao mesmo tempo: ajuda a manter a água em dia, que o psyllium precisa para agir.", "day": null}, {"name": "Salada de grão-de-bico", "time": "15 min", "meal": "Almoço", "tags": ["almoco"], "yld": "", "ing": ["1 xícara de grão-de-bico cozido", "tomate, pepino e cebola roxa", "salsinha", "limão, azeite e sal"], "steps": ["Pique os vegetais e misture com o grão-de-bico.", "Tempere com limão, um fio de azeite e sal.", "Sirva sobre folhas, sozinha ou com frango desfiado."], "tip": "Grão-de-bico tem fibra e proteína: um almoço leve que sustenta até o lanche.", "day": null}, {"name": "Peixe em papelote com legumes", "time": "25 min", "meal": "Jantar", "tags": ["jantar"], "yld": "", "ing": ["1 filé de peixe branco", "rodelas de tomate e cebola", "limão, sal e ervas"], "steps": ["Tempere o peixe com limão, sal e ervas.", "Monte sobre papel-alumínio com os legumes e feche bem.", "Asse a 200 °C por 20 minutos."], "tip": "Jantar leve e rápido, para os dias em que a fome da noite já está menor.", "day": null}, {"name": "Água de laranja e canela", "time": "5 min", "meal": "Ao longo do dia", "tags": ["lanche"], "yld": "", "ing": ["1 litro de água gelada", "rodelas de 1 laranja", "1 pau de canela", "folhas de hortelã (opcional)"], "steps": ["Coloque a laranja, a canela e a hortelã na jarra.", "Complete com água e deixe na geladeira por 1 hora.", "Reponha a água ao longo do dia."], "tip": "Inspirada na laranja moro da fórmula. Deixa a água mais gostosa e ajuda você a bater a meta do pilar 2.", "day": null}, {"name": "Arroz colorido com frango", "time": "20 min", "meal": "Almoço", "tags": ["almoco"], "yld": "2 porções", "ing": ["1 xícara de arroz cozido", "1 xícara de frango desfiado", "1 cenoura ralada", "½ xícara de ervilha e milho", "½ cebola picada", "1 dente de alho", "Sal e cheiro-verde"], "steps": ["Refogue a cebola e o alho em um fio de azeite.", "Junte a cenoura, a ervilha e o milho e refogue por 3 minutos.", "Acrescente o frango e o arroz, misture bem e acerte o sal.", "Finalize com cheiro-verde."], "tip": "Prato completo numa panela só. Sirva com salada ocupando metade do prato.", "day": 1}, {"name": "Omelete de espinafre e tomate", "time": "10 min", "meal": "Café da manhã", "tags": ["cafe"], "yld": "1 porção", "ing": ["2 ovos", "1 punhado de espinafre", "½ tomate picado", "Sal e pimenta", "1 fio de azeite"], "steps": ["Bata os ovos com sal e pimenta.", "Murche o espinafre na frigideira com o azeite.", "Despeje os ovos, espalhe o tomate e cozinhe em fogo baixo, tampado, até firmar."], "tip": "Proteína logo cedo ajuda a manhã a render. Tome as cápsulas com um copo cheio de água, no horário do rótulo.", "day": 2}, {"name": "Caldo verde com frango", "time": "30 min", "meal": "Jantar", "tags": ["jantar"], "yld": "4 porções", "ing": ["1 maço de couve fatiada bem fina", "2 batatas médias", "1 cebola", "2 dentes de alho", "1 xícara de frango desfiado", "1 litro de água", "Sal e um fio de azeite"], "steps": ["Cozinhe a batata, a cebola e o alho na água por 15 minutos.", "Bata no liquidificador e volte para a panela.", "Junte a couve e o frango e cozinhe por mais 3 minutos.", "Acerte o sal e finalize com o azeite."], "tip": "Quente e reconfortante: hidrata e sacia, e uma porção menor já basta.", "day": 3}, {"name": "Abobrinha recheada com carne", "time": "35 min", "meal": "Almoço", "tags": ["almoco"], "yld": "2 porções", "ing": ["2 abobrinhas", "250 g de carne moída magra", "½ cebola", "1 dente de alho", "1 tomate picado", "Sal e orégano", "Queijo branco ralado (opcional)"], "steps": ["Corte as abobrinhas ao meio e retire o miolo com uma colher. Pique o miolo.", "Refogue a carne com cebola, alho, tomate e o miolo picado. Tempere.", "Recheie as abobrinhas, cubra com queijo e asse a 200 °C por 20 minutos."], "tip": "A abobrinha vira o próprio prato: mais volume e fibra, com a porção de carne na medida.", "day": 4}, {"name": "Wrap de alface com frango", "time": "10 min", "meal": "Jantar", "tags": ["jantar"], "yld": "1 porção", "ing": ["4 folhas grandes de alface americana", "1 xícara de frango desfiado", "1 cenoura ralada", "1 tomate picado", "2 colheres de sopa de iogurte natural", "Limão e sal"], "steps": ["Misture o iogurte com limão e sal para fazer o molho.", "Recheie cada folha com frango, cenoura e tomate.", "Regue com o molho e enrole."], "tip": "Jantar leve e crocante, ideal para a fome menor do fim do dia.", "day": 5}, {"name": "Mingau de aveia com canela", "time": "5 min", "meal": "Café da manhã", "tags": ["cafe"], "yld": "1 porção", "ing": ["200 ml de leite ou bebida vegetal", "3 colheres de sopa de aveia em flocos", "Canela a gosto", "½ banana amassada (opcional)"], "steps": ["Leve o leite e a aveia ao fogo baixo.", "Mexa por 3 a 5 minutos, até engrossar.", "Finalize com canela e, se quiser, a banana."], "tip": "A fibra da aveia se soma à do psyllium. Beba água ao longo da manhã.", "day": 6}, {"name": "Tilápia com purê de abóbora", "time": "25 min", "meal": "Almoço", "tags": ["almoco"], "yld": "2 porções", "ing": ["2 filés de tilápia", "300 g de abóbora cabotiá", "1 limão", "1 dente de alho", "Sal e noz-moscada"], "steps": ["Tempere a tilápia com limão, alho e sal.", "Cozinhe a abóbora até ficar macia e amasse com sal e noz-moscada.", "Grelhe a tilápia em frigideira antiaderente, 3 a 4 minutos de cada lado."], "tip": "O purê de abóbora ocupa o lugar do carboidrato com mais leveza.", "day": 7}, {"name": "Salada de atum com feijão branco", "time": "10 min", "meal": "Almoço", "tags": ["almoco"], "yld": "2 porções", "ing": ["1 lata de atum em água", "1 xícara de feijão branco cozido", "1 tomate", "½ cebola roxa", "Salsinha", "Limão, azeite e sal"], "steps": ["Escorra o atum e o feijão.", "Pique o tomate, a cebola e a salsinha.", "Misture tudo e tempere com limão, um fio de azeite e sal."], "tip": "Fibra e proteína sem ligar o fogão: perfeita para levar na marmita.", "day": 8}, {"name": "Tapioca de frango", "time": "10 min", "meal": "Café da manhã", "tags": ["cafe"], "yld": "1 porção", "ing": ["3 colheres de sopa de goma de tapioca", "½ xícara de frango desfiado", "1 colher de sopa de requeijão light ou queijo branco", "Orégano"], "steps": ["Espalhe a goma na frigideira quente e espere firmar.", "Recheie com o frango, o requeijão e o orégano.", "Dobre ao meio e sirva."], "tip": "Café da manhã com proteína, aproveitando o frango desfiado da semana.", "day": 9}, {"name": "Strogonoff leve de frango", "time": "25 min", "meal": "Almoço", "tags": ["almoco"], "yld": "4 porções", "ing": ["400 g de peito de frango em cubos", "1 cebola", "2 dentes de alho", "1 xícara de champignon (opcional)", "2 colheres de sopa de extrato de tomate", "1 colher de chá de mostarda", "1 pote de iogurte natural", "Sal"], "steps": ["Doure o frango, junte a cebola e o alho.", "Acrescente o champignon, o extrato de tomate e a mostarda.", "Desligue o fogo e misture o iogurte."], "tip": "A versão leve de um clássico: a mesma vontade satisfeita com um prato mais equilibrado.", "day": 10}, {"name": "Creme de abóbora", "time": "30 min", "meal": "Jantar", "tags": ["jantar"], "yld": "4 porções", "ing": ["500 g de abóbora", "1 cebola", "2 dentes de alho", "1 litro de água", "Gengibre ralado (opcional)", "Sal e cheiro-verde"], "steps": ["Refogue a cebola e o alho.", "Junte a abóbora e a água e cozinhe até amaciar.", "Bata no liquidificador, acerte o sal e finalize com cheiro-verde."], "tip": "Jantar quente que sacia e conta para a hidratação do dia.", "day": 11}, {"name": "Falafel de forno", "time": "35 min", "meal": "Almoço", "tags": ["almoco"], "yld": "3 porções", "ing": ["2 xícaras de grão-de-bico cozido", "½ cebola", "2 dentes de alho", "1 punhado de salsinha", "1 colher de chá de cominho", "2 colheres de sopa de farinha de aveia", "Sal", "Molho: iogurte natural, limão e sal"], "steps": ["Processe tudo até formar uma massa que dê liga.", "Modele bolinhas e achate levemente.", "Asse a 200 °C por 25 minutos, virando na metade. Sirva com o molho."], "tip": "Grão-de-bico é fibra e proteína vegetal: rende um almoço leve que sustenta.", "day": 12}, {"name": "Frango ao curry com legumes", "time": "25 min", "meal": "Jantar", "tags": ["jantar"], "yld": "4 porções", "ing": ["400 g de frango em cubos", "1 colher de sopa de curry", "1 cebola", "2 dentes de alho", "1 abobrinha", "1 cenoura", "½ xícara de leite de coco light", "Sal"], "steps": ["Doure o frango com o curry, a cebola e o alho.", "Junte a cenoura e a abobrinha em cubos e refogue por 5 minutos.", "Acrescente o leite de coco e cozinhe por mais 5 minutos."], "tip": "Sabor marcante numa porção pequena: o tempero ajuda a satisfazer sem exagero.", "day": 13}, {"name": "Panqueca de espinafre com frango", "time": "25 min", "meal": "Almoço", "tags": ["almoco"], "yld": "2 porções", "ing": ["2 ovos", "1 xícara de espinafre", "3 colheres de sopa de aveia", "2 colheres de sopa de leite", "Sal", "Recheio: frango desfiado e molho de tomate"], "steps": ["Bata os ovos, o espinafre, a aveia, o leite e o sal no liquidificador.", "Faça as panquecas em frigideira antiaderente.", "Recheie com o frango, enrole e cubra com o molho."], "tip": "Uma massa feita de ovo, folha e aveia: mais proteína e fibra no mesmo prato.", "day": 14}, {"name": "Salada de lentilha", "time": "20 min", "meal": "Almoço", "tags": ["almoco"], "yld": "2 porções", "ing": ["1 xícara de lentilha cozida, firme", "1 tomate", "½ pepino", "½ cebola roxa", "Cheiro-verde", "Limão, azeite e sal"], "steps": ["Cozinhe a lentilha em água com sal por 15 minutos, sem deixar desmanchar. Escorra.", "Pique os vegetais.", "Misture e tempere com limão, azeite e sal."], "tip": "Lentilha tem fibra e proteína: uma salada que vira refeição completa.", "day": 15}, {"name": "Pizza de frigideira", "time": "15 min", "meal": "Jantar", "tags": ["jantar"], "yld": "1 porção", "ing": ["2 ovos", "2 colheres de sopa de aveia", "Sal e orégano", "Cobertura: 2 colheres de sopa de molho de tomate, queijo branco, rodelas de tomate e manjericão"], "steps": ["Bata os ovos com a aveia, o sal e o orégano.", "Despeje na frigideira, tampe e deixe firmar em fogo baixo.", "Vire, cubra com o molho, o queijo e o tomate, e tampe até o queijo derreter."], "tip": "A vontade de pizza resolvida em versão leve e na porção certa.", "day": 16}, {"name": "Moqueca leve de peixe", "time": "30 min", "meal": "Almoço", "tags": ["almoco"], "yld": "4 porções", "ing": ["500 g de peixe branco em postas", "1 pimentão", "1 tomate", "1 cebola", "1 limão", "½ xícara de leite de coco light", "Coentro ou cheiro-verde", "Sal"], "steps": ["Tempere o peixe com limão e sal.", "Monte camadas de cebola, tomate, pimentão e peixe na panela.", "Regue com o leite de coco, tampe e cozinhe por 15 minutos. Finalize com coentro."], "tip": "Peixe e legumes cozidos no próprio caldo: sabor de domingo com leveza.", "day": 17}, {"name": "Couve-flor gratinada", "time": "30 min", "meal": "Jantar", "tags": ["jantar"], "yld": "3 porções", "ing": ["1 couve-flor em floretes", "1 pote de iogurte natural", "1 ovo", "50 g de queijo branco ralado", "Sal e noz-moscada"], "steps": ["Cozinhe a couve-flor por 5 minutos e escorra.", "Misture o iogurte, o ovo, o sal e a noz-moscada.", "Cubra a couve-flor com o creme e o queijo e asse a 200 °C por 20 minutos."], "tip": "Cremosa e gratinada, com base de legume: muito volume para pouca porção.", "day": 18}, {"name": "Torrada com abacate e ovo", "time": "10 min", "meal": "Café da manhã", "tags": ["cafe"], "yld": "1 porção", "ing": ["1 fatia de pão integral", "¼ de abacate", "Limão e sal", "1 ovo", "Pimenta"], "steps": ["Toste o pão.", "Amasse o abacate com limão e sal e espalhe na torrada.", "Cubra com o ovo cozido ou pochê e a pimenta."], "tip": "Gordura boa, fibra e proteína: um café da manhã que segura até o almoço.", "day": 19}, {"name": "Carne de panela com legumes", "time": "45 min", "meal": "Almoço", "tags": ["almoco"], "yld": "4 porções", "ing": ["500 g de músculo ou acém em cubos", "1 cebola", "2 dentes de alho", "1 tomate", "1 cenoura", "1 chuchu", "1 folha de louro", "Sal"], "steps": ["Doure a carne e junte a cebola, o alho e o tomate.", "Cubra com água, junte o louro e cozinhe na pressão por 30 minutos.", "Abra, junte a cenoura e o chuchu e cozinhe por mais 5 minutos."], "tip": "Os legumes cozinham no caldo da carne: prato de família na medida do prato leve.", "day": 20}, {"name": "Frango assado com ervas e legumes", "time": "50 min", "meal": "Almoço", "tags": ["almoco"], "yld": "4 porções", "ing": ["4 sobrecoxas sem pele", "1 limão", "2 dentes de alho", "Alecrim e páprica", "1 batata-doce", "1 cebola", "1 abobrinha", "Sal e um fio de azeite"], "steps": ["Tempere o frango com limão, alho, alecrim, páprica e sal.", "Espalhe na assadeira com os legumes em pedaços.", "Asse a 200 °C por 45 minutos, virando na metade."], "tip": "Um almoço de celebração para fechar os 21 dias, sem sair da rotina.", "day": 21}], "days": [{"menu": ["Iogurte com aveia e fruta", "Arroz colorido com frango e salada verde", "Uma fruta", "Sopa de legumes com frango"], "ri": 1, "task": "Escolha um horário fixo para as cápsulas e coloque um alarme no celular.", "recipe": "Arroz colorido com frango"}, {"menu": ["Omelete de espinafre e tomate", "Frango desfiado temperado, legumes assados, arroz e feijão", "Iogurte natural", "Crepioca de queijo branco"], "ri": 0, "task": "Deixe uma garrafa de água à vista no lugar onde você passa mais tempo.", "recipe": "Omelete de espinafre e tomate"}, {"menu": ["Crepioca de queijo branco", "Salada de grão-de-bico com frango desfiado", "Água de laranja e canela e uma fruta", "Caldo verde com frango"], "ri": 3, "task": "Observe em que momento do dia a fome ou a vontade de beliscar costuma aparecer. Só anote.", "recipe": "Caldo verde com frango"}, {"menu": ["Iogurte com aveia e fruta", "Abobrinha recheada com carne e salada", "Uma fruta", "Omelete de forno com legumes"], "ri": 1, "task": "Monte o prato leve no almoço: a abobrinha recheada já tem proteína e legumes; complete com salada.", "recipe": "Abobrinha recheada com carne"}, {"menu": ["Ovos mexidos e uma fruta", "Frango desfiado temperado, arroz, feijão e salada", "Iogurte natural", "Wrap de alface com frango"], "ri": 3, "task": "No jantar, coma devagar: largue o talher entre as garfadas.", "recipe": "Wrap de alface com frango"}, {"menu": ["Mingau de aveia com canela", "Peixe em papelote com legumes, arroz e salada", "Castanhas, um punhado", "Sopa de legumes com frango"], "ri": 0, "task": "Faça a lista de compras da semana 2, que está no capítulo 3.", "recipe": "Mingau de aveia com canela"}, {"menu": ["Crepioca de queijo branco", "Tilápia com purê de abóbora e salada", "Uma fruta", "Salada de grão-de-bico"], "ri": 1, "task": "Tire as medidas e as fotos da semana 1 e compare com o dia 0.", "recipe": "Tilápia com purê de abóbora"}, {"menu": ["Omelete de espinafre e tomate", "Salada de atum com feijão branco", "Iogurte natural", "Omelete de forno com legumes"], "ri": 1, "task": "Monte o prato leve no almoço e no jantar.", "recipe": "Salada de atum com feijão branco"}, {"menu": ["Tapioca de frango", "Frango desfiado temperado, legumes assados, arroz e feijão", "Uma fruta", "Sopa de legumes com frango"], "ri": 0, "task": "Inclua uma proteína no café da manhã.", "recipe": "Tapioca de frango"}, {"menu": ["Iogurte com aveia e fruta", "Strogonoff leve de frango, arroz e salada", "Castanhas, um punhado", "Wrap de alface com frango"], "ri": 1, "task": "Prepare o frango desfiado e os legumes assados: rendem marmitas para 3 dias.", "recipe": "Strogonoff leve de frango"}, {"menu": ["Crepioca de queijo branco", "Peixe em papelote com legumes, arroz e salada", "Água de laranja e canela e uma fruta", "Creme de abóbora"], "ri": 3, "task": "Troque um lanche de pacote pela água de laranja e canela e uma fruta.", "recipe": "Creme de abóbora"}, {"menu": ["Ovos mexidos e uma fruta", "Falafel de forno com salada e molho de iogurte", "Iogurte natural", "Omelete de forno com legumes"], "ri": 1, "task": "Faça 20 minutos de caminhada ou outro movimento de que goste.", "recipe": "Falafel de forno"}, {"menu": ["Mingau de aveia com canela", "Arroz colorido com frango e salada verde", "Uma fruta", "Frango ao curry com legumes"], "ri": 3, "task": "Antes de repetir o prato no jantar, espere 10 minutos e beba um copo de água.", "recipe": "Frango ao curry com legumes"}, {"menu": ["Tapioca de frango", "Panqueca de espinafre com frango e salada", "Castanhas, um punhado", "Sopa de legumes com frango"], "ri": 1, "task": "Tire as medidas e as fotos da semana 2.", "recipe": "Panqueca de espinafre com frango"}, {"menu": ["Iogurte com aveia e fruta", "Salada de lentilha com frango desfiado", "Uma fruta", "Creme de abóbora"], "ri": 1, "task": "Planeje o fim de semana: escolha onde vai comer e o que vai pedir.", "recipe": "Salada de lentilha"}, {"menu": ["Omelete de espinafre e tomate", "Frango desfiado temperado, legumes assados, arroz e feijão", "Iogurte natural", "Pizza de frigideira"], "ri": 3, "task": "Experimente uma receita que você ainda não fez.", "recipe": "Pizza de frigideira"}, {"menu": ["Crepioca de queijo branco", "Moqueca leve de peixe com arroz", "Água de laranja e canela e uma fruta", "Wrap de alface com frango"], "ri": 1, "task": "Monte um prato leve fora de casa, num restaurante ou na casa de alguém.", "recipe": "Moqueca leve de peixe"}, {"menu": ["Ovos mexidos e uma fruta", "Strogonoff leve de frango, arroz e salada", "Castanhas, um punhado", "Couve-flor gratinada"], "ri": 3, "task": "Releia suas anotações do dia 3. A vontade de beliscar mudou?", "recipe": "Couve-flor gratinada"}, {"menu": ["Torrada com abacate e ovo", "Salada de atum com feijão branco", "Iogurte natural", "Sopa de legumes com frango"], "ri": 0, "task": "Faça 20 minutos de movimento.", "recipe": "Torrada com abacate e ovo"}, {"menu": ["Mingau de aveia com canela", "Carne de panela com legumes e arroz", "Uma fruta", "Omelete de forno com legumes"], "ri": 1, "task": "Confira quantas cápsulas restam no pote e se organize para não interromper a rotina.", "recipe": "Carne de panela com legumes"}, {"menu": ["Iogurte com aveia e fruta", "Frango assado com ervas e legumes", "Água de laranja e canela e uma fruta", "Creme de abóbora"], "ri": 1, "task": "Tire as medidas finais e as fotos.", "recipe": "Frango assado com ervas e legumes"}], "weeks": {"1": [{"g": "Proteínas", "items": ["Ovos (2 dúzias)", "Peito de frango (1 kg)", "Carne moída magra (250 g)", "Filés de tilápia (2)", "Filé de peixe branco (1)", "Iogurte natural (7 potes)", "Queijo branco", "Leite (1 litro)"]}, {"g": "Legumes e verduras", "items": ["Abobrinha (4)", "Cenoura (4)", "Chuchu", "Espinafre (2 maços)", "Couve (1 maço)", "Tomate (6)", "Cebola e cebola roxa", "Batata (2)", "Abóbora cabotiá (300 g)", "Alface americana", "Pepino", "Brócolis e berinjela", "Ervilha e milho"]}, {"g": "Frutas", "items": ["Frutas para 7 dias", "Banana", "Laranjas", "Limões"]}, {"g": "Grãos", "items": ["Arroz", "Feijão", "Grão-de-bico", "Aveia em flocos", "Goma de tapioca"]}, {"g": "Outros", "items": ["Castanhas"]}], "2": [{"g": "Proteínas", "items": ["Ovos (2 dúzias)", "Peito de frango (1,5 kg)", "Atum em água (1 lata)", "Filé de peixe branco (1)", "Iogurte natural (8 potes)", "Queijo branco", "Requeijão light"]}, {"g": "Legumes e verduras", "items": ["Abóbora (500 g)", "Espinafre (2 maços)", "Abobrinha (3)", "Cenoura (3)", "Tomate (6)", "Cebola e cebola roxa", "Alface americana", "Champignon (opcional)", "Gengibre", "Salsinha e cheiro-verde"]}, {"g": "Frutas", "items": ["Frutas para 7 dias", "Laranjas", "Limões"]}, {"g": "Grãos", "items": ["Feijão branco", "Grão-de-bico (2 xícaras)", "Farinha de aveia"]}, {"g": "Temperos e outros", "items": ["Curry", "Cominho", "Mostarda", "Extrato de tomate", "Leite de coco light", "Castanhas"]}], "3": [{"g": "Proteínas", "items": ["Ovos (1 dúzia e meia)", "Peito de frango (1 kg)", "Sobrecoxas (4)", "Músculo ou acém (500 g)", "Peixe branco em postas (500 g)", "Atum em água (1 lata)", "Iogurte natural (7 potes)", "Queijo branco", "Leite"]}, {"g": "Legumes e verduras", "items": ["Couve-flor", "Abóbora (500 g)", "Batata-doce", "Pimentão", "Tomate (6)", "Pepino", "Cenoura e chuchu", "Abobrinha", "Espinafre", "Alface americana", "Coentro ou cheiro-verde", "Manjericão"]}, {"g": "Frutas", "items": ["Frutas para 7 dias", "Abacate", "Laranjas", "Limões"]}, {"g": "Grãos", "items": ["Lentilha", "Feijão branco", "Pão integral"]}, {"g": "Temperos e outros", "items": ["Alecrim", "Páprica", "Louro", "Molho de tomate", "Leite de coco light", "Castanhas"]}]}, "pantry": ["Arroz", "Feijão", "Aveia em flocos", "Goma de tapioca", "Azeite", "Sal e pimenta", "Alho", "Cebola", "Orégano e ervas secas", "Colorau", "Canela em pau e em pó", "Noz-moscada", "Papel-alumínio", "Potes com tampa para marmitas"], "meals": ["Café da manhã", "Almoço", "Lanche", "Jantar"]};
 const KEY = "secalyn_protocolo_v1";
 const LEAF = '<svg viewBox="0 0 60 60" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3d98a"/><stop offset="1" stop-color="#b8862b"/></linearGradient></defs><path d="M30 6C40 18 41 32 30 46C19 32 20 18 30 6Z" fill="url(#lg)"/><path d="M28 46C16 44 8 34 7 22C17 25 25 33 28 46Z" fill="url(#lg)"/><path d="M32 46C44 44 52 34 53 22C43 25 35 33 32 46Z" fill="url(#lg)"/><rect x="29" y="44" width="2" height="10" rx="1" fill="url(#lg)"/></svg>';
-const PHASES = [{n:1,name:"Adaptação"},{n:2,name:"Ritmo"},{n:3,name:"Consolidação"}];
-const MEAS_DAYS = [0,7,14,21];
-const PILARES = [["Cápsulas no horário","Tome o Secalyn na dose e no horário indicados no rótulo, todos os dias. Constância é o que faz a rotina funcionar."],["Água","Tome as cápsulas com um copo cheio de água e mantenha uma garrafa por perto. O psyllium da fórmula precisa de água para formar o gel que dá saciedade."],["Prato leve","Metade do prato com legumes e verduras, um quarto com proteína e um quarto com carboidrato. Porções menores que sustentam."],["Movimento leve","Caminhe ou se movimente 20 minutos por dia, se puder. Soma ao resultado, mas não é obrigatório."]];
-const FAQ = [["Como devo tomar o Secalyn?","Siga a dose e o horário indicados no rótulo, sempre com um copo cheio de água."],["Esqueci de tomar um dia. E agora?","Continue normalmente no próximo horário. Não tome dose dobrada para compensar."],["Preciso seguir o cardápio à risca?","Não. Ele é um guia pronto para facilitar: troque refeições entre dias ou repita as que mais gostou."],["Preciso treinar?","Não é obrigatório. Movimento leve soma ao resultado e melhora a disposição."],["Em quanto tempo vejo diferença?","Varia de pessoa para pessoa. Por isso o app acompanha medidas, que costumam mostrar mudança antes da balança."],["Senti algum desconforto. O que faço?","Confira se está bebendo água suficiente, já que a fórmula tem fibra. Se o desconforto continuar, suspenda o uso e procure um profissional de saúde."],["Posso repetir o protocolo?","Sim. Depois do dia 21, escolha uma nova data de início em Mais."]];
+const CAPSULE = '<svg viewBox="0 0 64 30" aria-hidden="true"><defs><linearGradient id="cg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c23232"/><stop offset="1" stop-color="#6b0f12"/></linearGradient><linearGradient id="cg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6df98"/><stop offset="1" stop-color="#c99a2e"/></linearGradient></defs><path d="M15 2h17v26H15A13 13 0 0 1 15 2z" fill="url(#cg1)"/><path d="M32 2h17a13 13 0 0 1 0 26H32z" fill="url(#cg2)"/><rect x="8" y="6" width="16" height="4" rx="2" fill="#fff" opacity=".35"/></svg>';
+const EMO = {"Omelete de forno com legumes":"🍳","Iogurte com aveia e fruta":"🥣","Crepioca de queijo branco":"🌮","Frango desfiado temperado":"🍗","Legumes assados":"🥕","Sopa de legumes com frango":"🍲","Salada de grão-de-bico":"🥗","Peixe em papelote com legumes":"🐟","Água de laranja e canela":"🍊","Arroz colorido com frango":"🍚","Omelete de espinafre e tomate":"🍳","Caldo verde com frango":"🥬","Abobrinha recheada com carne":"🥒","Wrap de alface com frango":"🌯","Mingau de aveia com canela":"🥣","Tilápia com purê de abóbora":"🐟","Salada de atum com feijão branco":"🥗","Tapioca de frango":"🌮","Strogonoff leve de frango":"🍛","Creme de abóbora":"🎃","Falafel de forno":"🧆","Frango ao curry com legumes":"🍛","Panqueca de espinafre com frango":"🥞","Salada de lentilha":"🥗","Pizza de frigideira":"🍕","Moqueca leve de peixe":"🥘","Couve-flor gratinada":"🥦","Torrada com abacate e ovo":"🥑","Carne de panela com legumes":"🥩","Frango assado com ervas e legumes":"🍗"};
+const MEALKEY = ["cafe","almoco","lanche","jantar"];
+const MEALNAME = ["Café da manhã","Almoço","Lanche","Jantar"];
+const MEALICO = ["☀️","🍽️","🍎","🌙"];
+const CAPS_POTE = 60, CAPS_DIA = 2, DIAS_POTE = CAPS_POTE/CAPS_DIA;
+const PLANS = [{p:1,t:"1 mês"},{p:3,t:"3 meses",best:true},{p:5,t:"5 meses"},{p:8,t:"8 meses"}];
+const MAINT = ["Repita a receita que você mais gostou até aqui.","Monte o prato leve em todas as refeições de hoje.","Faça 20 minutos de caminhada ou outro movimento de que goste.","Coma sem tela em pelo menos uma refeição.","Experimente uma receita que você ainda não fez.","Planeje as refeições do fim de semana.","Troque um lanche de pacote por fruta ou iogurte natural.","Anote três mudanças que você percebeu desde o início.","Prepare as marmitas dos próximos dias.","Tente dormir pelo menos 7 horas esta noite.","Organize a lista de compras da próxima semana.","Convide alguém para caminhar com você.","Releia seu primeiro check-in. O que mudou?","Antes de repetir o prato, espere 10 minutos e beba um copo de água."];
+const QUOTES = ["Todo grande resultado começa com um primeiro dia.","Um copo de água de cada vez.","Não é sobre perfeição, é sobre constância.","Comer com calma também é cuidar de você.","Pequenas escolhas, repetidas, viram resultado.","Você não precisa de dieta. Precisa de rotina.","Uma semana inteira. Olhe para o quanto você já fez.","A segunda semana é onde o hábito nasce.","Seu corpo agradece cada copo de água.","Cozinhar em casa é um ato de carinho com você.","Menos fome, mais leveza.","Movimento é presente, não castigo.","Respeite a saciedade: ela é sua aliada.","Duas semanas. A rotina já é sua.","Reta final. Continue no seu ritmo.","Experimentar faz parte da jornada.","Você leva a rotina para onde for.","Olhe para trás e veja a diferença.","Cada dia conta, inclusive os difíceis.","Prepare-se para continuar: o hábito não para aqui.","Três semanas. Agora é manter o ritmo.","Constância vale mais que intensidade.","Seu ritmo, suas regras, seu resultado.","Mais um dia cuidando de você.","O hábito já faz parte da sua rotina.","Celebre cada pequena vitória.","Continue: o melhor vem com o tempo.","Hoje é mais um passo na sua jornada.","Leveza também é constância."];
+const PILARES = [["💊","Cápsulas no horário","Tome o Secalyn na dose e no horário indicados no rótulo, todos os dias. Constância é o que faz a rotina funcionar.","m-jantar"],["💧","Água","Tome as cápsulas com um copo cheio de água e mantenha uma garrafa por perto. O psyllium da fórmula precisa de água para formar o gel que dá saciedade.","m-cafe"],["🥗","Prato leve","Metade do prato com legumes e verduras, um quarto com proteína e um quarto com carboidrato. Porções menores que sustentam.","m-almoco"],["🚶‍♀️","Movimento leve","Caminhe ou se movimente 20 minutos por dia, se puder. Soma ao resultado, mas não é obrigatório.","m-lanche"]];
+const FAQ = [["Como devo tomar o Secalyn?","Siga a dose e o horário indicados no rótulo, sempre com um copo cheio de água."],["Esqueci de tomar um dia. E agora?","Continue normalmente no próximo horário. Não tome dose dobrada para compensar."],["Preciso seguir o cardápio à risca?","Não. Ele é um guia pronto para facilitar: troque refeições entre dias ou repita as que mais gostou."],["Preciso treinar?","Não é obrigatório. Movimento leve soma ao resultado e melhora a disposição."],["Em quanto tempo vejo diferença?","Varia de pessoa para pessoa. Por isso o app acompanha medidas, que costumam mostrar mudança antes da balança."],["Senti algum desconforto. O que faço?","Confira se está bebendo água suficiente, já que a fórmula tem fibra. Se o desconforto continuar, suspenda o uso e procure um profissional de saúde."],["Quanto tempo dura meu tratamento?","Cada pote tem 60 cápsulas e você toma 2 por dia, então cada pote dura 30 dias. O app calcula o seu tratamento pela quantidade de potes que você informou."],["Comprei mais potes. Como atualizo?","Em Mais, toque em Meu plano e ajuste a quantidade. Seu progresso continua salvo."]];
+const _x=0;
 const CHECKIN_Q = ["O que funcionou melhor nesta semana?","Em que momento a rotina ficou difícil?","Qual receita você mais gostou?","O que você vai fazer diferente na próxima semana?"];
+const MOODS = [["😌","Nenhuma",0],["🙂","Pouca",3],["😐","Média",5],["😋","Bastante",7],["🤤","Muita",10]];
+const GROUPICO = {"Proteínas":"🍗","Legumes e verduras":"🥦","Frutas":"🍎","Grãos":"🌾","Grãos e cereais":"🌾","Outros":"🛒","Temperos e outros":"🧂","Despensa básica":"🧺"};
 
 /* ===== armazenamento ===== */
 let S = load();
-function load(){ try{ const r = localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return {start:null,name:"",days:{},meas:{},checkins:{},shop:{}}; }
+function load(){ try{ const r=localStorage.getItem(KEY); if(r){ const o=JSON.parse(r); o.days=o.days||{}; o.meas=o.meas||{}; o.checkins=o.checkins||{}; o.shop=o.shop||{}; return o; } }catch(e){} return {start:null,name:"",days:{},meas:{},checkins:{},shop:{}}; }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
-function dayData(n){ return S.days[n] || (S.days[n] = {caps:false,task:false,water:0,crave:null,note:""}); }
+function dayData(n){ return S.days[n] || (S.days[n]={caps:false,task:false,water:0,crave:null,note:""}); }
 
 /* ===== datas ===== */
 function iso(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
 function parseISO(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); }
-function currentDay(){ if(!S.start) return 0; const t=parseISO(iso(new Date())), s=parseISO(S.start); return Math.round((t-s)/864e5)+1; }
-function phaseOf(n){ return PHASES[Math.min(2,Math.floor((n-1)/7))]; }
+function currentDay(){ if(!S.start) return 0; return Math.round((parseISO(iso(new Date()))-parseISO(S.start))/864e5)+1; }
+function totalDays(){ return (S.potes||1)*DIAS_POTE; }
+function menuDay(n){ return ((n-1)%21)+1; }
+function taskOf(n){ return n<=21 ? DATA.days[n-1].task : MAINT[(n-22)%MAINT.length]; }
+function phaseOf(n){ if(n<=7) return {name:"Adaptação",lab:"Fase 1"}; if(n<=14) return {name:"Ritmo",lab:"Fase 2"}; if(n<=21) return {name:"Consolidação",lab:"Fase 3"}; return {name:"Manutenção",lab:"Mês "+Math.ceil(n/30)}; }
+function poteOf(n){ return Math.max(1,Math.ceil(n/DIAS_POTE)); }
+function measDays(){ const s=new Set([0,7,14,21]); for(let k=1;k<=(S.potes||1);k++) s.add(k*DIAS_POTE); return [...s].sort((a,b)=>a-b); }
+function capsLeft(){ return Math.max(0,(S.potes||1)*CAPS_POTE - takenCount()*CAPS_DIA); }
+function activeDay(){ return viewDay ?? Math.max(1,Math.min(currentDay(),totalDays())); }
+function greeting(){ const h=new Date().getHours(); return h<12?"Bom dia":h<18?"Boa tarde":"Boa noite"; }
 
 /* ===== utilidades ===== */
-const $ = (s,el=document)=>el.querySelector(s);
-const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const RNAMES = DATA.recipes.map((r,i)=>({n:r.name,i})).sort((a,b)=>b.n.length-a.n.length);
-const RPAT = new RegExp("("+RNAMES.map(x=>x.n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")","gi");
-function linkRecipes(t){ return esc(t).replace(RPAT, m=>{ const r=RNAMES.find(x=>x.n.toLowerCase()===m.toLowerCase()); return `<button class="rlink" data-recipe="${r.i}">${m}</button>`; }); }
-function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),1800); }
-function vibrate(){ try{ navigator.vibrate && navigator.vibrate(12); }catch(e){} }
+const $=(s,el=document)=>el.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const RNAMES=DATA.recipes.map((r,i)=>({n:r.name,i})).sort((a,b)=>b.n.length-a.n.length);
+function findRecipe(text){ const t=text.toLowerCase(); return RNAMES.find(x=>t.includes(x.n.toLowerCase())); }
+function emoOf(text){ const r=findRecipe(text); if(r) return EMO[r.n]||"🍽️"; const t=norm(text); if(t.includes("fruta")) return "🍎"; if(t.includes("iogurte")) return "🥛"; if(t.includes("castanha")) return "🌰"; if(t.includes("ovo")) return "🍳"; if(t.includes("pao")) return "🍞"; return "🍽️"; }
+function mealClass(r){ return "m-"+(r.tags[0]||"almoco"); }
+function hilite(text){ const r=findRecipe(text); if(!r) return esc(text); const i=text.toLowerCase().indexOf(r.n.toLowerCase()); return esc(text.slice(0,i))+"<em>"+esc(text.slice(i,i+r.n.length))+"</em>"+esc(text.slice(i+r.n.length)); }
+function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),1900); }
+function vibrate(ms=12){ try{ navigator.vibrate&&navigator.vibrate(ms); }catch(e){} }
+const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+function confetti(el){ if(reduce) return; const r=el.getBoundingClientRect(); const cx=r.left+r.width/2, cy=r.top+r.height/2; const cols=["#f0d27a","#c99a2e","#9c1f1f","#7a1416","#fff3da"]; for(let i=0;i<26;i++){ const c=document.createElement("i"); c.className="confetti"; const a=Math.random()*Math.PI*2, d=60+Math.random()*110; c.style.background=cols[i%cols.length]; c.style.setProperty("--x0",cx+"px"); c.style.setProperty("--y0",cy+"px"); c.style.setProperty("--x1",(cx+Math.cos(a)*d)+"px"); c.style.setProperty("--y1",(cy+Math.sin(a)*d+60)+"px"); c.style.setProperty("--rot",(Math.random()*720-360)+"deg"); document.body.appendChild(c); setTimeout(()=>c.remove(),1200); } }
+function streak(){ let n=Math.min(Math.max(currentDay(),0),totalDays()); if(n<1) return 0; if(!S.days[n]?.caps) n--; let s=0; while(n>=1 && S.days[n]?.caps){ s++; n--; } return s; }
+function takenCount(){ let c=0; const T=totalDays(); for(const k in S.days){ if(+k>=1 && +k<=T && S.days[k].caps) c++; } return c; }
 
-/* ===== estado de navegação ===== */
-let tab = "hoje", viewDay = null, sub = null, recFilter = "todas", recQuery = "", shopWeek = "1", measMetric = "cintura", ciWeek = 1;
-
-function render(){
+/* ===== navegação ===== */
+let tab="hoje", viewDay=null, recFilter="todas", recQuery="", shopWeek="1", measMetric="cintura";
+function render(anim){
   const app=$("#app");
-  if(!S.start){ $("#nav").hidden=true; app.innerHTML = onboarding(); bindOnb(); return; }
+  if(!S.start||!S.potes||editingPlan){ $("#nav").hidden=true; app.innerHTML=onboarding(); bindOnb(); return; }
   $("#nav").hidden=false;
-  document.querySelectorAll(".nav button").forEach(b=>b.setAttribute("aria-current", b.dataset.tab===tab?"page":"false"));
-  app.innerHTML = ({hoje:hoje, receitas:receitas, medidas:medidas, compras:compras, mais:mais})[tab]();
+  document.querySelectorAll(".nav button").forEach(b=>b.setAttribute("aria-current",b.dataset.tab===tab?"page":"false"));
+  app.innerHTML=({hoje,receitas,medidas,compras,mais})[tab]();
+  if(anim) { app.classList.remove("fade"); void app.offsetWidth; app.classList.add("fade"); }
 }
 
 /* ===== onboarding ===== */
+let obPotes=null, obOther=2, editingPlan=false;
+const JAR='<svg viewBox="0 0 16 30"><rect x="3" y="0" width="10" height="5" rx="1.5" fill="#f4efe6"/><rect x="1" y="5" width="14" height="25" rx="3" fill="#8f1a1a"/><rect x="1" y="12" width="14" height="10" fill="#6b0f12"/><path d="M8 13.5c1.6 1.8 1.6 4 0 6c-1.6-2-1.6-4.2 0-6z" fill="#e6c169"/></svg>';
+function jars(n){ return `<div class="jars ${n>4?"many":""}">${JAR.repeat(n)}</div>`; }
 function onboarding(){
-  return `<div class="onb">
-  <div class="brand">${LEAF}SECALYN</div>
-  <h1>Protocolo<em>Seca</em>21 dias</h1>
-  <p class="lead">Sua rotina com o Secalyn, dia a dia: tarefa, cardápio, receitas e acompanhamento das suas medidas.</p>
+  const sel=obPotes??S.potes??null, custom=sel && !PLANS.some(p=>p.p===sel);
+  const sumP=sel||null;
+  return `<div class="onb"><div class="brand">${LEAF}SECALYN</div>
+  <div class="float" style="height:90px"><span style="left:8%;top:24px;--r:-14deg">🥗</span><span style="left:40%;top:0;animation-delay:.6s"><span style="display:inline-block;width:76px">${CAPSULE}</span></span><span style="right:8%;top:28px;--r:12deg;animation-delay:1.2s">💧</span></div>
+  <h1 style="font-size:42px">Seu tratamento<em style="font-size:52px">Secalyn</em></h1>
+  <p style="text-align:center;color:#f3e2dc;margin:12px 0 18px;font-size:14px;position:relative">Rotina dia a dia, 30 receitas, controle de água e acompanhamento das suas medidas.</p>
   <label for="nm">Como podemos te chamar?</label>
-  <input id="nm" type="text" autocomplete="given-name" placeholder="Seu nome (opcional)" maxlength="30">
-  <label for="dt">Quando você começa?</label>
-  <input id="dt" type="date" value="${iso(new Date())}">
-  <button class="cta" id="go">Começar meu protocolo</button>
+  <input id="nm" type="text" autocomplete="given-name" placeholder="Seu nome" maxlength="30" value="${esc(S.name||"")}">
+  <label>Quantos potes você comprou?</label>
+  <div class="plans">${PLANS.map(p=>`<button class="plan press" data-plan="${p.p}" aria-pressed="${sel===p.p}">${p.best?'<span class="best">Mais vendido</span>':""}${jars(p.p)}<b>${p.p} pote${p.p>1?"s":""}</b><small>${p.t} de tratamento</small></button>`).join("")}</div>
+  <div class="other"><span>Outra quantidade:</span><button data-other="-1" aria-label="Menos um pote">−</button><b>${custom?sel:obOther}</b><button data-other="1" aria-label="Mais um pote">+</button><button style="width:auto;padding:0 12px;border-radius:17px;font-size:13px" data-plan="${custom?sel:obOther}">Usar</button></div>
+  ${sumP?`<div class="summary">${sumP} pote${sumP>1?"s":""} × 60 cápsulas, 2 por dia: <b>${sumP*30} dias de tratamento</b> (${sumP} ${sumP>1?"meses":"mês"}).</div>`:""}
+  <label for="dt">Quando você começa (ou começou)?</label>
+  <input id="dt" type="date" value="${S.start||iso(new Date())}">
+  <button class="cta press" id="go" ${sumP?"":'disabled style="opacity:.5"'}>${S.start?"Salvar meu plano":"Começar meu tratamento"}</button>
   <p class="fine">Seus dados ficam salvos só neste celular.</p></div>`;
 }
-function bindOnb(){
-  $("#go").onclick=()=>{ const d=$("#dt").value||iso(new Date()); S.start=d; S.name=$("#nm").value.trim(); save(); tab="hoje"; viewDay=null; render(); window.scrollTo(0,0); };
+function bindOnb(){ $("#go").onclick=()=>{ const p=obPotes??S.potes; if(!p) return; S.potes=p; S.start=$("#dt").value||iso(new Date()); S.name=$("#nm").value.trim(); save(); obPotes=null; editingPlan=false; tab="hoje"; viewDay=null; render(true); window.scrollTo(0,0); }; }
+
+/* ===== anel de 21 dias ===== */
+function ring(n){
+  const P=poteOf(Math.max(n,1)), base=(P-1)*DIAS_POTE, cx=84,cy=84,r=74,N=DIAS_POTE,seg=360/N,gap=3.2; let out="";
+  const pt=(a,rr)=>{ const t=(a-90)*Math.PI/180; return [cx+rr*Math.cos(t), cy+rr*Math.sin(t)]; };
+  for(let i=0;i<N;i++){ const a0=i*seg+gap/2, a1=(i+1)*seg-gap/2; const [x0,y0]=pt(a0,r),[x1,y1]=pt(a1,r); const k=base+i+1, on=S.days[k]?.caps;
+    const col = on ? "url(#rg)" : (k===n ? "#ffffff" : "rgba(255,255,255,.18)");
+    out+=`<path d="M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}" stroke="${col}" stroke-width="${k===n?11:8}" stroke-linecap="round" fill="none"/>`; }
+  return `<svg viewBox="0 0 168 168" role="img" aria-label="Pote ${P}: dia ${n}."><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6df98"/><stop offset="1" stop-color="#c99a2e"/></linearGradient></defs>${out}</svg>`;
 }
+function potBars(){ const T=S.potes||1; let h=""; for(let p=1;p<=T;p++){ let c=0; for(let k=(p-1)*DIAS_POTE+1;k<=p*DIAS_POTE;k++) if(S.days[k]?.caps) c++; h+=`<div class="pb"><i style="width:${c/DIAS_POTE*100}%"></i></div>`; } return h; }
+function goalRing(p,col,emo,label,ok){ const C=2*Math.PI*24; return `<div class="goal ${ok?"ok":""}"><div class="gr"><svg viewBox="0 0 58 58"><circle cx="29" cy="29" r="24" stroke="#f1e6d4" stroke-width="6" fill="none"/><circle cx="29" cy="29" r="24" stroke="${col}" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="${(C*p).toFixed(1)} ${C.toFixed(1)}"/></svg><span>${ok?"✅":emo}</span></div>${label}</div>`; }
+function bottle(pct){ const h=Math.round(92*pct), y=104-h; return `<svg viewBox="0 0 74 112" aria-hidden="true"><defs><clipPath id="bc"><path d="M24 6h26v10c10 6 16 14 16 26v56a10 10 0 0 1-10 10H18a10 10 0 0 1-10-10V42c0-12 6-20 16-26z"/></clipPath><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fc0e3"/><stop offset="1" stop-color="#3d7fb3"/></linearGradient></defs><g clip-path="url(#bc)"><rect x="0" y="0" width="74" height="112" fill="#eef5fb"/>${pct>0?`<g class="wave"><path d="M0 ${y} q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 V112 H0z" fill="url(#wg)"/></g>`:""}</g><path d="M24 6h26v10c10 6 16 14 16 26v56a10 10 0 0 1-10 10H18a10 10 0 0 1-10-10V42c0-12 6-20 16-26z" fill="none" stroke="#4f8fc0" stroke-width="2.5"/><rect x="22" y="1" width="30" height="8" rx="3" fill="#4f8fc0"/></svg>`; }
 
 /* ===== HOJE ===== */
 function hoje(){
   const cur=currentDay();
   if(cur<1) return preStart(cur);
-  if(cur>21 && viewDay===null) return finished();
-  const n = viewDay ?? Math.min(cur,21);
-  const D = DATA.days[n-1], dd = dayData(n), ph = phaseOf(n);
-  const pills = Array.from({length:21},(_,i)=>{ const k=i+1, on=S.days[k]?.caps; return `<button class="pill ${on?"on":""} ${k===n?"cur":""}" data-goday="${k}" aria-label="Dia ${k}${on?", Secalyn tomado":""}"></button>`; }).join("");
-  const taken = Object.values(S.days).filter(x=>x.caps).length;
-  const water = Array.from({length:8},(_,i)=>`<button class="glass" data-water="${i+1}" aria-pressed="${i<dd.water}" aria-label="${i+1} copo${i?"s":""} de água"></button>`).join("");
-  const meals = D.menu.map((m,i)=>`<div class="meal ${i===D.ri?"hi":""}"><span class="ml">${DATA.meals[i].replace("Café da manhã","Café")}</span><span class="mt">${linkRecipes(m)}</span></div>`).join("");
-  const ri = DATA.recipes.findIndex(r=>r.name===D.recipe), R = DATA.recipes[ri];
-  const isMeasDay = MEAS_DAYS.includes(n) && n>0, isCheckin = n%7===0;
-  const hello = S.name ? `Olá, ${esc(S.name)}` : "Olá";
+  const T=totalDays();
+  if(cur>T && viewDay===null) return finished();
+  const n=activeDay(), md=menuDay(n), D=DATA.days[md-1], dd=dayData(n), ph=phaseOf(n), P=poteOf(n), left=capsLeft(), daysLeft=T-Math.min(cur,T);
+  const ri=DATA.recipes.findIndex(r=>r.name===D.recipe), R=DATA.recipes[ri];
+  const isToday=n===Math.min(cur,T), st=streak();
+  const nm=S.name?`, ${esc(S.name)}`:"";
+  const goalsDone = (dd.caps?1:0)+(dd.water>=8?1:0)+(dd.task?1:0);
+  const drops=Array.from({length:8},(_,i)=>`<button class="drop press" data-water="${i+1}" aria-pressed="${i<dd.water}" aria-label="${i+1} copo${i?"s":""} de água"><svg viewBox="0 0 22 28"><path d="M11 2C11 2 3 12 3 18a8 8 0 0 0 16 0c0-6-8-16-8-16z"/></svg></button>`).join("");
+  const meals=D.menu.map((m,i)=>{ const fr=findRecipe(m); return `<button class="meal press" ${fr?`data-recipe="${fr.i}"`:"disabled"}><span class="art m-${MEALKEY[i]}">${emoOf(m)}</span><span class="tx"><small>${MEALICO[i]} ${MEALNAME[i]} ${i===D.ri?'<span class="tag">Receita do dia</span>':""}</small><b>${hilite(m)}</b></span>${fr?'<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>':""}</button>`; }).join("");
+  const moodSel = dd.crave;
   return `<header class="hero">
-    <div class="hero-top"><div class="brand">${LEAF}SECALYN</div><span class="hello">${hello}</span></div>
-    <div class="dayline"><div><div class="phase">Fase ${ph.n} · ${ph.name}</div><div class="bigday">Dia ${n}<small>de 21</small></div></div>
-    <div class="daynav"><button data-nav="-1" ${n<=1?"disabled":""} aria-label="Dia anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button><button data-nav="1" ${n>=21?"disabled":""} aria-label="Próximo dia"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
-    <div class="pills">${pills}</div>
-    <div class="pills-leg"><span>Secalyn em ${taken} de 21 dias</span><span>Dia 21</span></div>
-    ${n!==Math.min(cur,21)?`<button class="backtoday" data-today>Voltar para hoje (dia ${Math.min(cur,21)})</button>`:""}
+    <div class="topbar"><div class="brand">${LEAF}SECALYN</div><div class="avatar">${esc((S.name||"S")[0].toUpperCase())}</div></div>
+    <div class="greet"><small>${isToday?greeting()+nm:"Revendo o seu protocolo"}</small><h1>${isToday?"Este é o seu dia "+n:"Dia "+n+" do protocolo"}</h1></div>
+    <div class="ringwrap"><div class="ring">${ring(n)}<div class="c"><small>dia</small><b>${n}</b><i>de ${T}</i></div></div>
+      <div class="side">
+        <div class="mini"><span class="e">🔥</span><div><b>${st} dia${st===1?"":"s"}</b><span>seguidos com Secalyn</span></div></div>
+        <div class="mini"><span class="e">🫙</span><div><b>Pote ${P} de ${S.potes}</b><span>${ph.lab} · ${ph.name}</span></div></div>
+        <div class="mini"><span class="e">💊</span><div><b>${left} cápsulas</b><span>restantes no total</span></div></div>
+      </div></div>
+    <div class="potbars">${potBars()}</div><div class="potleg"><span>${S.potes} pote${S.potes>1?"s":""} · ${T} dias</span><b>${Math.round(takenCount()/T*100)}% do tratamento</b></div>
+    <div class="daynav"><button data-nav="-1" ${n<=1?"disabled":""}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg>Dia ${n-1>0?n-1:""}</button>${!isToday?`<button class="today" data-today>Voltar para hoje</button>`:""}<button data-nav="1" ${n>=T?"disabled":""}>Dia ${n<T?n+1:""}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button></div>
   </header>
-  ${cur>=18 && n>=18 ? `<div class="banner"><b>Seu pote está chegando ao fim?</b><p>Para não interromper a rotina, garanta o próximo antes de acabar.</p><a class="cta" href="${CHECKOUT_URL}" target="_blank" rel="noopener">Garantir meu próximo Secalyn</a></div>`:""}
-  <section class="block"><h3>Seu Secalyn de hoje</h3>
-    <button class="capsbtn" data-caps aria-pressed="${dd.caps}"><span class="cap"></span><div><b>${dd.caps?"Secalyn tomado":"Tomei meu Secalyn"}</b><span>${dd.caps?"Ótimo. Agora é manter a água em dia.":"Na dose e no horário do rótulo, com um copo cheio de água"}</span></div></button>
-    <h3 style="margin-top:20px">Água</h3>
-    <div class="water">${water}</div>
-    <div class="wcount"><span>${dd.water} de 8 copos</span><span>Toque em um copo para marcar</span></div>
-  </section>
-  <section class="block"><h3>Tarefa do dia</h3>
-    <div class="task"><p>${esc(D.task)}</p><button class="tick" data-task aria-pressed="${dd.task}" aria-label="Marcar tarefa como feita"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></button></div>
-  </section>
-  <section class="block"><h3>Cardápio do dia</h3>${meals}</section>
-  <button class="rday" data-recipe="${ri}"><small>Receita do dia · ${esc(R.meal)}</small><strong>${esc(R.name)}</strong><span>${esc(R.time)} · rende ${esc(R.yld)}</span></button>
-  ${isMeasDay?`<div class="banner"><b>Dia de medidas</b><p>Registre peso, cintura e quadril para comparar com o dia 0.</p><button class="cta alt" data-goto="medidas">Registrar minhas medidas</button></div>`:""}
-  ${isCheckin?`<div class="banner"><b>Check-in da semana ${n/7}</b><p>Cinco minutos para olhar para trás e planejar a próxima semana.</p><button class="cta alt" data-checkin="${n/7}">Fazer meu check-in</button></div>`:""}
-  <section class="block"><h3>Como foi hoje?</h3>
-    <label for="crave" class="muted" style="font-size:14px">Vontade de beliscar: <b id="cv" style="color:var(--wine)">${dd.crave??"–"}</b> de 10</label>
-    <input class="slider" id="crave" type="range" min="0" max="10" step="1" value="${dd.crave??5}">
-    <div class="scale"><span>Nenhuma</span><span>Muita</span></div>
-    <textarea id="note" placeholder="Anotações do dia">${esc(dd.note)}</textarea>
-  </section>
-  <div style="height:8px"></div>`;
+  <div class="quote">${QUOTES[(n-1)%QUOTES.length]}</div>
+
+  <div class="sec-h"><h2>Metas do dia</h2><span>${goalsDone} de 3</span></div>
+  <div class="card"><div class="goals">${goalRing(dd.caps?1:0,"#7a1416","💊","Secalyn",dd.caps)}${goalRing(Math.min(dd.water,8)/8,"#4f8fc0","💧",`Água ${dd.water}/8`,dd.water>=8)}${goalRing(dd.task?1:0,"#c99a2e","✨","Tarefa",dd.task)}</div>
+  ${goalsDone===3?`<div class="complete">🎉 Dia completo! Você cumpriu as três metas de hoje.</div>`:""}</div>
+
+  <div class="sec-h"><h2>Seu Secalyn</h2></div>
+  <div class="card" style="padding:12px"><button class="capsbtn press" data-caps aria-pressed="${dd.caps}"><span class="cap">${CAPSULE}</span><span><b>${dd.caps?"2 cápsulas tomadas":"Tomei minhas 2 cápsulas"}</b><small>${dd.caps?"Agora é só manter a água em dia.":"Toque aqui quando tomar, com um copo cheio de água."}</small></span>${dd.caps?'<span class="check-badge">✓</span>':""}</button></div>
+
+  <div class="sec-h"><h2>Água</h2><span>meta de 8 copos</span></div>
+  <div class="card"><div class="waterbox"><div class="bottle">${bottle(Math.min(dd.water,8)/8)}</div>
+   <div class="wright"><div class="big">${dd.water}<small> de 8 copos</small></div><div class="muted" style="font-size:13px">${dd.water>=8?"Meta batida. Seu Secalyn agradece.":dd.water===0?"Comece com um copo agora.":"Faltam "+(8-dd.water)+" copos para a meta."}</div>
+   <div class="wbtns"><button class="press" data-wadd="-1" aria-label="Tirar um copo">− 1</button><button class="press" data-wadd="1" aria-label="Adicionar um copo">+ 1 copo</button></div></div></div>
+   <div class="drops">${drops}</div></div>
+
+  <div class="sec-h"><h2>Tarefa do dia</h2></div>
+  <div class="task"><span class="ti">✨</span><p>${esc(taskOf(n))}</p><button class="tick press" data-task aria-pressed="${dd.task}" aria-label="Marcar tarefa como feita"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></button></div>
+
+  ${isToday && daysLeft<=7 ? `<div style="height:14px"></div><div class="promo"><span class="pe">💊</span><b>${daysLeft<=0?"Último dia do seu tratamento":"Seu tratamento acaba em "+daysLeft+" dia"+(daysLeft>1?"s":"")}</b><p>Restam cerca de ${left} cápsulas. Garanta os próximos potes para não interromper a rotina.</p><a class="cta press" href="${CHECKOUT_URL}" target="_blank" rel="noopener">Garantir meu próximo Secalyn</a></div>`:""}
+
+  <div class="sec-h"><h2>Receita do dia</h2><span>${esc(R.meal)}</span></div>
+  <button class="feature press" data-recipe="${ri}"><div class="fa ${mealClass(R)}"><span>${EMO[R.name]}</span><span class="fl tag">Cardápio ${md}</span></div><div class="fb"><strong>${esc(R.name)}</strong><div class="chipsrow"><span>⏱️ ${esc(R.time)}</span><span>🍽️ Rende ${esc(R.yld)}</span><span>🥄 ${R.ing.length} ingredientes</span></div></div></button>
+
+  <div class="sec-h"><h2>Cardápio do dia</h2><span>toque para ver a receita</span></div>
+  <div class="meals">${meals}</div>
+
+  ${n%7===0?`<div style="height:14px"></div><div class="hint"><span class="he">📝</span><div style="flex:1"><b>Check-in da semana ${n/7}</b><p>5 minutos para olhar para trás.</p></div><button class="cta wine press" data-checkin="${n/7}">Fazer</button></div>`:""}
+  ${measDays().includes(n)?`<div style="height:12px"></div><div class="hint"><span class="he">📏</span><div style="flex:1"><b>Dia de medidas</b><p>Peso, cintura e quadril.</p></div><button class="cta wine press" data-goto="medidas">Registrar</button></div>`:""}
+
+  <div class="sec-h"><h2>Como foi hoje?</h2></div>
+  <div class="card"><div class="muted" style="font-size:13.5px">Vontade de beliscar</div>
+   <div class="moodrow">${MOODS.map(m=>`<button class="mood press" data-crave="${m[2]}" aria-pressed="${moodSel===m[2]}"><span>${m[0]}</span>${m[1]}</button>`).join("")}</div>
+   <textarea id="note" placeholder="Anotações do dia: como você se sentiu, o que comeu fora do cardápio…">${esc(dd.note)}</textarea></div>
+  <div style="height:10px"></div>`;
 }
 function preStart(cur){
-  const left = 1-cur;
-  return `<header class="hero"><div class="hero-top"><div class="brand">${LEAF}SECALYN</div><span class="hello">${S.name?`Olá, ${esc(S.name)}`:"Olá"}</span></div>
-  <div class="dayline"><div><div class="phase">Preparação</div><div class="bigday">Dia 0</div></div></div>
-  <p style="margin-top:12px;color:#f3e2dc">Seu protocolo começa em ${left} dia${left>1?"s":""}.</p></header>
-  <section class="block"><h3>Antes de começar</h3>
-  <div class="pillar"><div class="pnum">1</div><p><b>Registre suas medidas do dia 0.</b> Peso, cintura e quadril, pela manhã.</p></div>
-  <div class="pillar"><div class="pnum">2</div><p><b>Faça as compras da semana 1.</b> A lista está na aba Compras.</p></div>
-  <div class="pillar"><div class="pnum">3</div><p><b>Leia os 4 pilares</b> na aba Mais.</p></div>
-  <button class="cta alt" style="margin-top:14px" data-goto="medidas">Registrar medidas do dia 0</button></section>`;
+  const left=1-cur;
+  return `<header class="hero"><div class="topbar"><div class="brand">${LEAF}SECALYN</div><div class="avatar">${esc((S.name||"S")[0].toUpperCase())}</div></div>
+  <div class="greet"><small>${greeting()}${S.name?", "+esc(S.name):""}</small><h1>Faltam ${left} dia${left>1?"s":""} para começar</h1></div>
+  <div class="ringwrap"><div class="ring">${ring(0)}<div class="c"><small>dia</small><b>0</b><i>preparação</i></div></div>
+  <div class="side"><div class="mini"><span class="e">📅</span><div><b>${parseISO(S.start).toLocaleDateString("pt-BR",{day:"2-digit",month:"short"})}</b><span>início do tratamento</span></div></div><div class="mini"><span class="e">🫙</span><div><b>${S.potes} pote${S.potes>1?"s":""}</b><span>${totalDays()} dias de tratamento</span></div></div></div></div></header>
+  <div class="quote">Preparar-se também é começar.</div>
+  <div class="sec-h"><h2>Antes do dia 1</h2></div>
+  <div class="meals">
+   <button class="meal press" data-goto="medidas"><span class="art m-jantar">📏</span><span class="tx"><small>Passo 1</small><b>Registre suas medidas do dia 0</b></span></button>
+   <button class="meal press" data-goto="compras"><span class="art m-almoco">🛒</span><span class="tx"><small>Passo 2</small><b>Faça as compras da semana 1</b></span></button>
+   <button class="meal press" data-sub="pilares"><span class="art m-cafe">🌿</span><span class="tx"><small>Passo 3</small><b>Conheça os 4 pilares da rotina</b></span></button></div>`;
 }
 function finished(){
-  const taken = Object.values(S.days).filter(x=>x.caps).length;
-  return `<header class="hero"><div class="hero-top"><div class="brand">${LEAF}SECALYN</div></div>
-  <div class="dayline"><div><div class="phase">Protocolo concluído</div><div class="bigday">21 dias</div></div></div>
-  <p style="margin-top:12px;color:#f3e2dc">Você tomou o Secalyn em ${taken} dos 21 dias.</p></header>
-  <section class="block done"><b>Parabéns por chegar até aqui</b><p class="muted" style="margin-top:6px">Vinte e um dias é tempo para criar uma rotina, não para chegar ao resultado final. Compare suas medidas e continue.</p></section>
-  <div class="banner"><b>Continue sem interromper</b><p>Garanta o próximo pote e recomece o protocolo pela fase 2 com as receitas que você mais gostou.</p><a class="cta" href="${CHECKOUT_URL}" target="_blank" rel="noopener">Garantir meu próximo Secalyn</a></div>
-  <section class="block"><button class="cta alt" data-goto="medidas">Ver minha evolução</button><button class="cta" style="margin-top:10px;background:#f1e6d4" data-review>Rever os 21 dias</button></section>`;
+  const t=takenCount(), T=totalDays();
+  return `<header class="hero"><div class="topbar"><div class="brand">${LEAF}SECALYN</div><div class="avatar">${esc((S.name||"S")[0].toUpperCase())}</div></div>
+  <div class="greet"><small>Tratamento concluído</small><h1>Você completou ${T} dias 🎉</h1></div>
+  <div class="ringwrap"><div class="ring">${ring(T)}<div class="c"><small>Secalyn</small><b>${t}</b><i>de ${T} dias</i></div></div>
+  <div class="side"><div class="mini"><span class="e">🏆</span><div><b>${badges().filter(b=>b.on).length} conquistas</b><span>desbloqueadas</span></div></div><div class="mini"><span class="e">🫙</span><div><b>${S.potes} pote${S.potes>1?"s":""}</b><span>concluídos</span></div></div></div></div>
+  <div class="potbars">${potBars()}</div></header>
+  <div class="quote">Você criou uma rotina. Agora é continuar.</div>
+  <div style="height:16px"></div>
+  <div class="promo"><span class="pe">💊</span><b>Continue sem interromper</b><p>Garanta os próximos potes. Depois, atualize seu plano em Mais para continuar acompanhando aqui.</p><a class="cta press" href="${CHECKOUT_URL}" target="_blank" rel="noopener">Garantir meu próximo Secalyn</a></div>
+  <div style="height:12px"></div>
+  <div class="meals"><button class="meal press" data-goto="medidas"><span class="art m-almoco">📈</span><span class="tx"><small>Sua jornada</small><b>Ver minha evolução</b></span></button>
+  <button class="meal press" data-sub="plano"><span class="art m-cafe">🫙</span><span class="tx"><small>Comprou mais potes?</small><b>Atualizar meu plano</b></span></button>
+  <button class="meal press" data-review><span class="art m-lanche">📅</span><span class="tx"><small>Seu tratamento</small><b>Rever os dias anteriores</b></span></button></div>`;
 }
 
 /* ===== RECEITAS ===== */
 function receitas(){
-  const chips=[["todas","Todas"],["cafe","Café da manhã"],["almoco","Almoço"],["lanche","Lanche"],["jantar","Jantar"]];
-  const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); const q=norm(recQuery.trim());
-  const list=DATA.recipes.map((r,i)=>({r,i})).filter(({r})=>(recFilter==="todas"||r.tags.includes(recFilter)) && (!q || norm(r.name).includes(q) || norm(r.ing.join(" ")).includes(q))).sort((a,b)=>a.r.name.localeCompare(b.r.name,"pt"));
-  return `<div class="ptop"><h1>Receitas</h1><p>As 30 receitas do protocolo. Busque por nome ou ingrediente.</p></div>
-  <div class="pad" style="margin-top:10px"><input type="search" id="rq" placeholder="Buscar: frango, abóbora, ovo…" value="${esc(recQuery)}" aria-label="Buscar receitas"></div>
-  <div class="chips">${chips.map(([k,l])=>`<button class="chip" data-filter="${k}" aria-pressed="${recFilter===k}">${l}</button>`).join("")}</div>
-  <div class="rlist" id="rlist">${list.length?list.map(({r,i})=>`<button class="ritem" data-recipe="${i}"><div><b>${esc(r.name)}</b><span>${esc(r.meal)} · ${esc(r.time)}</span></div>${r.day?`<i>Dia ${r.day}</i>`:""}</button>`).join(""):`<p class="empty">Nenhuma receita com “${esc(recQuery)}”. Tente outro ingrediente.</p>`}</div>`;
+  const chips=[["todas","✨ Todas"],["cafe","☀️ Café"],["almoco","🍽️ Almoço"],["lanche","🍎 Lanche"],["jantar","🌙 Jantar"]];
+  const q=norm(recQuery.trim());
+  const list=DATA.recipes.map((r,i)=>({r,i})).filter(({r})=>(recFilter==="todas"||r.tags.includes(recFilter))&&(!q||norm(r.name).includes(q)||norm(r.ing.join(" ")).includes(q))).sort((a,b)=>(a.r.day??99)-(b.r.day??99)||a.r.name.localeCompare(b.r.name,"pt"));
+  const cards=list.map(({r,i})=>`<button class="rc press" data-recipe="${i}"><div class="ra ${mealClass(r)}"><span>${EMO[r.name]}</span>${r.day?`<i class="tag">Cardápio ${r.day}</i>`:`<i class="tag" style="background:#fff">Base</i>`}</div><div class="rb"><b>${esc(r.name)}</b><small>⏱️ ${esc(r.time)} · ${esc(r.meal)}</small></div></button>`).join("");
+  return `<div class="ptop"><h1>Receitas</h1><p>30 receitas num cardápio de 21 dias que se repete durante todo o tratamento.</p><span class="pe">🥗</span></div>
+  <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="rq" placeholder="Buscar por nome ou ingrediente" value="${esc(recQuery)}" aria-label="Buscar receitas"></div>
+  <div class="chips">${chips.map(([k,l])=>`<button class="chip press" data-filter="${k}" aria-pressed="${recFilter===k}">${l}</button>`).join("")}</div>
+  ${list.length?`<div class="grid">${cards}</div>`:`<div class="empty"><span>🔍</span>Nenhuma receita com “${esc(recQuery)}”. Tente outro ingrediente.</div>`}`;
 }
 function openRecipe(i){
   const r=DATA.recipes[i];
-  openSheet(`<h1 id="sheettitle">${esc(r.name)}</h1>
-  <div class="meta"><span>${esc(r.meal)}</span><span>${esc(r.time)}</span>${r.yld?`<span>Rende ${esc(r.yld)}</span>`:""}${r.day?`<span>Receita do dia ${r.day}</span>`:"<span>Receita base</span>"}</div>
-  <h4>Ingredientes</h4><ul>${r.ing.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-  <h4>Modo de preparo</h4><ol>${r.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
-  <div class="tip"><b>Combina com o Secalyn:</b> ${esc(r.tip)}</div>`);
+  openSheet(`<div class="shero ${mealClass(r)}"><span>${EMO[r.name]}</span></div>
+  <div class="sbody"><span class="tag">${r.day?"Receita do cardápio "+r.day:"Receita base"}</span><h1 id="sheettitle" style="margin-top:8px">${esc(r.name)}</h1>
+  <div class="stats3"><div><span>⏱️</span><b>${esc(r.time)}</b><small>preparo</small></div><div><span>🍽️</span><b>${esc(r.yld||"várias")}</b><small>rende</small></div><div><span>${MEALICO[MEALKEY.indexOf(r.tags[0])]||"🍽️"}</span><b>${esc(r.meal.split(" ou ")[0])}</b><small>refeição</small></div></div>
+  <h4>Ingredientes</h4><div class="ingl">${r.ing.map(x=>`<button data-ing aria-pressed="false"><span class="tick" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></span><span>${esc(x)}</span></button>`).join("")}</div>
+  <h4>Modo de preparo</h4><div class="steps">${r.steps.map((x,k)=>`<div class="step"><b>${k+1}</b><p>${esc(x)}</p></div>`).join("")}</div>
+  <div class="tipbox"><span>💊</span><div><b>Combina com o Secalyn:</b> ${esc(r.tip)}</div></div></div>`);
 }
 
 /* ===== MEDIDAS ===== */
-function medidas(){
-  const rows=MEAS_DAYS.map(d=>{ const m=S.meas[d]||{}; return `<tr><td>Dia ${d}</td>${["peso","cintura","quadril"].map(k=>`<td><input inputmode="decimal" data-meas="${d}" data-k="${k}" value="${esc(m[k]??"")}" aria-label="${k} no dia ${d}" placeholder="–"></td>`).join("")}</tr>`; }).join("");
-  const unit = measMetric==="peso"?"kg":"cm";
-  const pts = MEAS_DAYS.map(d=>({d,v:parseFloat(String(S.meas[d]?.[measMetric]??"").replace(",","."))})).filter(p=>!isNaN(p.v));
-  const deltas=["peso","cintura","quadril"].map(k=>{ const a=num(S.meas[0]?.[k]); const last=[21,14,7].map(d=>num(S.meas[d]?.[k])).find(v=>v!==null); if(a===null||last===null) return `<div><b>–</b><span>${k}</span></div>`; const df=(last-a); return `<div><b>${df>0?"+":""}${df.toFixed(1).replace(".",",")}</b><span>${k} (${k==="peso"?"kg":"cm"})</span></div>`; }).join("");
-  return `<div class="ptop"><h1>Minhas medidas</h1><p>Registre nos dias 0, 7, 14 e 21, sempre pela manhã e nas mesmas condições.</p></div>
-  <section class="block"><table class="mtable"><thead><tr><th></th><th>Peso (kg)</th><th>Cintura (cm)</th><th>Quadril (cm)</th></tr></thead><tbody>${rows}</tbody></table></section>
-  <h2>Sua evolução</h2>
-  <div class="seg" style="margin-top:0">${[["cintura","Cintura"],["quadril","Quadril"],["peso","Peso"]].map(([k,l])=>`<button data-metric="${k}" aria-pressed="${measMetric===k}">${l}</button>`).join("")}</div>
-  <section class="block">${chart(pts,unit)}<div class="delta">${deltas}</div><p class="muted" style="font-size:12.5px;margin-top:10px">Diferença entre o dia 0 e a medida mais recente.</p></section>`;
-}
 function num(v){ const x=parseFloat(String(v??"").replace(",",".")); return isNaN(x)?null:x; }
+function medidas(){
+  const unit=measMetric==="peso"?"kg":"cm";
+  const MD=measDays(); const pts=MD.map(d=>({d,v:num(S.meas[d]?.[measMetric])})).filter(p=>p.v!==null);
+  const cards=[["peso","⚖️","kg"],["cintura","📏","cm"],["quadril","🍑","cm"]].map(([k,e,u])=>{ const a=num(S.meas[0]?.[k]); const last=[...MD].reverse().filter(d=>d>0).map(d=>num(S.meas[d]?.[k])).find(v=>v!==null); if(a===null||last===null) return `<div class="mc"><span>${e}</span><b>–</b><small>${k} (${u})</small></div>`; const df=last-a; return `<div class="mc"><span>${e}</span><b class="${df<0?"down":""}">${df>0?"+":""}${df.toFixed(1).replace(".",",")}</b><small>${k} (${u})</small></div>`; }).join("");
+  const days=MD.map(d=>{ const m=S.meas[d]||{}; const full=["peso","cintura","quadril"].every(k=>num(m[k])!==null); return `<div class="md"><div class="md-h"><b>Dia ${d}</b>${full?'<span class="ok">✓ registrado</span>':`<span>${d===0?"antes de começar":d%30===0?"fim do pote "+d/30:"fim da semana "+d/7}</span>`}</div><div class="md-in">${[["peso","Peso (kg)"],["cintura","Cintura (cm)"],["quadril","Quadril (cm)"]].map(([k,l])=>`<div><label for="m${d}${k}">${l}</label><input id="m${d}${k}" inputmode="decimal" data-meas="${d}" data-k="${k}" value="${esc(m[k]??"")}" placeholder="–"></div>`).join("")}</div></div>`; }).join("");
+  return `<div class="ptop"><h1>Medidas</h1><p>Registre nos dias 0, 7, 14, 21 e no fim de cada pote.</p><span class="pe">📈</span></div>
+  <div class="mcards">${cards}</div>
+  <div class="sec-h"><h2>Evolução</h2></div>
+  <div class="seg">${[["cintura","Cintura"],["quadril","Quadril"],["peso","Peso"]].map(([k,l])=>`<button data-metric="${k}" aria-pressed="${measMetric===k}">${l}</button>`).join("")}</div>
+  <div class="card" style="margin-top:12px">${chart(pts,unit)}</div>
+  <div class="sec-h"><h2>Registros</h2><span>sempre pela manhã</span></div>
+  <div class="mday">${days}</div>`;
+}
 function chart(pts,unit){
-  const W=320,H=180,L=34,Rr=18,T=28,B=28;
-  if(pts.length<2) return `<p class="empty" style="padding:24px 0">Registre pelo menos duas medidas para ver o gráfico.</p>`;
-  const vs=pts.map(p=>p.v); let mn=Math.min(...vs), mx=Math.max(...vs); if(mx-mn<2){mn-=1;mx+=1;}
-  const x=d=>L+(d/21)*(W-L-Rr), y=v=>T+(1-(v-mn)/(mx-mn))*(H-T-B);
-  const path=pts.map((p,i)=>(i?"L":"M")+x(p.d).toFixed(1)+" "+y(p.v).toFixed(1)).join(" ");
-  const grid=[mn,(mn+mx)/2,mx].map(v=>`<line x1="${L}" x2="${W-Rr}" y1="${y(v)}" y2="${y(v)}" stroke="#ead9bd" stroke-width="1"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end" font-size="10" fill="#7d6a66">${v.toFixed(0)}</text>`).join("");
-  const xl=MEAS_DAYS.map(d=>`<text x="${x(d)}" y="${H-8}" text-anchor="middle" font-size="10.5" fill="#7d6a66">Dia ${d}</text>`).join("");
-  const dots=pts.map(p=>`<circle cx="${x(p.d)}" cy="${y(p.v)}" r="5" fill="#7a1416" stroke="#f0d27a" stroke-width="2"/><text x="${x(p.d)}" y="${y(p.v)-10}" text-anchor="middle" font-size="11" font-weight="600" fill="#7a1416">${String(p.v).replace(".",",")}</text>`).join("");
-  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Gráfico de evolução em ${unit}">${grid}${xl}<path d="${path}" fill="none" stroke="#c99a2e" stroke-width="2.5" stroke-linejoin="round"/>${dots}</svg>`;
+  const W=320,H=190,L=34,Rr=18,T=30,B=28;
+  if(pts.length<2) return `<div class="empty" style="padding:26px 0"><span>📊</span>Registre pelo menos duas medidas para ver o gráfico.</div>`;
+  const vs=pts.map(p=>p.v); let mn=Math.min(...vs),mx=Math.max(...vs); if(mx-mn<2){mn-=1;mx+=1;}
+  const XM=Math.max(21,...pts.map(p=>p.d)); const x=d=>L+(d/XM)*(W-L-Rr), y=v=>T+(1-(v-mn)/(mx-mn))*(H-T-B);
+  const line=pts.map((p,i)=>(i?"L":"M")+x(p.d).toFixed(1)+" "+y(p.v).toFixed(1)).join(" ");
+  const area=line+` L${x(pts[pts.length-1].d).toFixed(1)} ${H-B} L${x(pts[0].d).toFixed(1)} ${H-B} Z`;
+  const grid=[mn,(mn+mx)/2,mx].map(v=>`<line x1="${L}" x2="${W-Rr}" y1="${y(v)}" y2="${y(v)}" stroke="#efe2cc" stroke-dasharray="3 4"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end" font-size="10" fill="#8a7570">${v.toFixed(0)}</text>`).join("");
+  const xl=pts.map(p=>p.d).map(d=>`<text x="${x(d)}" y="${H-8}" text-anchor="middle" font-size="10.5" fill="#8a7570">Dia ${d}</text>`).join("");
+  const dots=pts.map(p=>`<circle cx="${x(p.d)}" cy="${y(p.v)}" r="6" fill="#fff" stroke="#7a1416" stroke-width="3"/><g><rect x="${x(p.d)-19}" y="${y(p.v)-30}" width="38" height="19" rx="9.5" fill="#7a1416"/><text x="${x(p.d)}" y="${y(p.v)-16.5}" text-anchor="middle" font-size="11" font-weight="600" fill="#f0d27a">${String(p.v).replace(".",",")}</text></g>`).join("");
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Gráfico de evolução em ${unit}"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0d27a" stop-opacity=".55"/><stop offset="1" stop-color="#f0d27a" stop-opacity="0"/></linearGradient></defs>${grid}${xl}<path d="${area}" fill="url(#ag)"/><path d="${line}" fill="none" stroke="#c99a2e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>${dots}</svg>`;
 }
 
 /* ===== COMPRAS ===== */
 function compras(){
-  const tabs=[["1","Semana 1"],["2","Semana 2"],["3","Semana 3"],["d","Despensa"]];
-  const groups = shopWeek==="d" ? [{g:"Despensa básica",items:DATA.pantry}] : DATA.weeks[shopWeek];
-  const body = groups.map(gr=>`<section class="block group"><h3>${esc(gr.g)}</h3>${gr.items.map(it=>{ const k=shopWeek+"|"+it; return `<button class="item" data-shop="${esc(k)}" aria-pressed="${!!S.shop[k]}"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></span><span>${esc(it)}</span></button>`; }).join("")}</section>`).join("");
-  const intro = shopWeek==="d" ? "Itens usados nas três semanas. Confira antes de cada compra." : `Tudo para os dias ${(shopWeek-1)*7+1} a ${shopWeek*7}, para uma pessoa.`;
-  return `<div class="ptop"><h1>Compras</h1><p>${intro}</p></div>
-  <div class="seg">${tabs.map(([k,l])=>`<button data-week="${k}" aria-pressed="${shopWeek===k}">${l}</button>`).join("")}</div>
-  ${body}<div class="pad" style="margin-top:14px"><button class="cta" style="background:#f1e6d4" data-clearshop>Desmarcar todos desta lista</button></div>`;
+  const curW=String(((Math.ceil(Math.max(currentDay(),1)/7)-1)%3)+1); if(!compras._init){ shopWeek=curW; compras._init=1; } const tabs=[["1","Semana 1"],["2","Semana 2"],["3","Semana 3"],["d","Despensa"]];
+  const groups=shopWeek==="d"?[{g:"Despensa básica",items:DATA.pantry}]:DATA.weeks[shopWeek];
+  const all=groups.flatMap(g=>g.items), done=all.filter(it=>S.shop[shopWeek+"|"+it]).length;
+  const body=groups.map(gr=>`<div class="group"><h3><span>${GROUPICO[gr.g]||"🛒"}</span>${esc(gr.g)}</h3>${gr.items.map(it=>{ const k=shopWeek+"|"+it; return `<button class="item" data-shop="${esc(k)}" aria-pressed="${!!S.shop[k]}"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></span><span>${esc(it)}</span></button>`; }).join("")}</div>`).join("");
+  return `<div class="ptop"><h1>Compras</h1><p>${shopWeek==="d"?"Itens usados em todas as semanas.":`Semana ${shopWeek} do cardápio. O cardápio se repete a cada 3 semanas.`}</p><span class="pe">🛒</span></div>
+  <div class="seg" style="margin-top:12px">${tabs.map(([k,l])=>`<button data-week="${k}" aria-pressed="${shopWeek===k}">${l}</button>`).join("")}</div>
+  <div class="prog"><div class="pt"><span>No carrinho</span><b>${done} de ${all.length} itens</b></div><div class="pbar"><i style="width:${all.length?done/all.length*100:0}%"></i></div></div>
+  ${body}<div style="margin:14px 16px 0"><button class="cta soft press" data-clearshop>Desmarcar todos desta lista</button></div>`;
 }
 
 /* ===== MAIS ===== */
-function mais(){
-  return `<div class="ptop"><h1>Mais</h1><p>Check-ins, guias e configurações.</p></div>
-  <div class="menu-list"><button data-sub="checkin">Check-ins semanais</button><button data-sub="pilares">Os 4 pilares</button><button data-sub="faq">Perguntas frequentes</button><button data-sub="instalar">Colocar o app na tela inicial</button></div>
-  <div class="menu-list"><button data-sub="inicio">Alterar data de início</button><a class="cta" style="border-radius:0;background:#fff;color:var(--wine);text-align:left;padding:17px 18px;font-weight:400" href="${CHECKOUT_URL}" target="_blank" rel="noopener">Comprar Secalyn</a><button data-sub="suporte">Suporte</button><button data-sub="apagar" class="danger">Apagar meus dados</button></div>
-  <p class="muted" style="text-align:center;font-size:12px;margin:22px 20px">Este app é educativo e não substitui o acompanhamento de um profissional de saúde. Use o Secalyn conforme o rótulo.</p>`;
+function badges(){
+  const d=S.days, T=totalDays(), tk=takenCount();
+  let maxRun=0,run=0; for(let i=1;i<=T;i++){ if(d[i]?.caps){run++;maxRun=Math.max(maxRun,run);} else run=0; }
+  const hyd=Object.values(d).filter(x=>x.water>=8).length, full=Object.values(d).filter(x=>x.caps&&x.task&&x.water>=8).length;
+  const nMeas=measDays().filter(k=>num(S.meas[k]?.cintura)!==null).length;
+  const list=[
+    {e:"🌱",t:"Primeiro passo",s:"1º dia com Secalyn",on:tk>=1},
+    {e:"🔥",t:"Embalada",s:"3 dias seguidos",on:maxRun>=3},
+    {e:"💧",t:"Hidratada",s:"meta de água 5 vezes",on:hyd>=5},
+    {e:"🎉",t:"Dia completo",s:"3 metas no mesmo dia",on:full>=1},
+    {e:"⭐",t:"Semana de ouro",s:"7 dias seguidos",on:maxRun>=7},
+    {e:"🧭",t:"21 dias",s:"protocolo inicial",on:tk>=21},
+    {e:"📏",t:"Em evolução",s:"2 medidas registradas",on:nMeas>=2},
+    {e:"📝",t:"Reflexiva",s:"1 check-in feito",on:Object.keys(S.checkins).length>0},
+    {e:"🫙",t:"1º pote",s:"30 dias com Secalyn",on:tk>=30}];
+  if(T>=90) list.push({e:"🌗",t:"Metade",s:"metade do tratamento",on:tk>=T/2});
+  list.push({e:"🏆",t:"Tratamento completo",s:T+" dias com Secalyn",on:tk>=T});
+  return list;
 }
+function mais(){
+  const b=badges(), on=b.filter(x=>x.on).length;
+  return `<div class="ptop"><h1>Mais</h1><p>Conquistas, guias e ajustes.</p><span class="pe">🌿</span></div>
+  <div class="sec-h" style="margin-top:14px"><h2>Conquistas</h2><span>${on} de ${b.length}</span></div>
+  <div class="badges">${b.map(x=>`<div class="badge ${x.on?"on":""}"><div class="bi">${x.e}</div><b>${x.t}</b><small>${x.s}</small></div>`).join("")}</div>
+  <div class="sec-h"><h2>Guias</h2></div>
+  <div class="tiles">
+   <button class="tile press" data-sub="checkin"><span class="te m-jantar">📝</span><b>Check-ins semanais</b><small>Olhe para trás e planeje</small></button>
+   <button class="tile press" data-sub="pilares"><span class="te m-almoco">🌿</span><b>Os 4 pilares</b><small>A base da rotina</small></button>
+   <button class="tile press" data-sub="faq"><span class="te m-cafe">💬</span><b>Dúvidas</b><small>Perguntas frequentes</small></button>
+   <button class="tile press" data-sub="instalar"><span class="te m-lanche">📲</span><b>Tela inicial</b><small>Use como aplicativo</small></button>
+   <a class="tile wine press" href="${CHECKOUT_URL}" target="_blank" rel="noopener"><span class="te" style="background:rgba(255,255,255,.12)">💊</span><b>Comprar Secalyn</b><small>Garanta seu próximo pote</small></a>
+   <button class="tile press" data-sub="suporte"><span class="te m-cafe">✉️</span><b>Suporte</b><small>Fale com a gente</small></button>
+  </div>
+  <div class="sec-h"><h2>Ajustes</h2></div>
+  <div class="tiles"><button class="tile press" data-sub="plano"><span class="te m-cafe">🫙</span><b>Meu plano</b><small>${S.potes} pote${S.potes>1?"s":""} · ${totalDays()} dias</small></button><button class="tile press" data-sub="inicio"><span class="te m-almoco">📅</span><b>Data de início</b><small>Mudar ou recomeçar</small></button><button class="tile press" data-sub="apagar"><span class="te m-jantar">🗑️</span><b>Apagar dados</b><small>Limpar este celular</small></button></div>
+  <p class="muted" style="text-align:center;font-size:12px;margin:22px 24px">Este app é educativo e não substitui o acompanhamento de um profissional de saúde. Use o Secalyn conforme o rótulo.</p>`;
+}
+function plain(title,html){ openSheet(`<div class="plain"><h1 id="sheettitle">${title}</h1>${html}</div>`); }
 function openSub(k){
-  if(k==="checkin") return openCheckin(ciWeek);
-  if(k==="pilares") return openSheet(`<h1 id="sheettitle">Os 4 pilares</h1><div class="body" style="margin-top:10px">${PILARES.map((p,i)=>`<div class="pillar"><div class="pnum">${i+1}</div><p><b>${p[0]}.</b> ${p[1]}</p></div>`).join("")}<div class="tip" style="margin:14px 0 0">Nos dias corridos, priorize os pilares 1 e 2. Eles sozinhos já mantêm a rotina.</div></div>`);
-  if(k==="faq") return openSheet(`<h1 id="sheettitle">Perguntas frequentes</h1><div class="body" style="margin-top:6px">${FAQ.map(f=>`<div class="faq"><b>${f[0]}</b><p>${f[1]}</p></div>`).join("")}</div>`);
-  if(k==="instalar") return openSheet(`<h1 id="sheettitle">Na tela inicial</h1><div class="body" style="margin-top:10px"><h4 style="margin:6px 0">No iPhone</h4><p>Abra este link no Safari, toque no botão de compartilhar (o quadrado com a seta) e escolha “Adicionar à Tela de Início”.</p><h4 style="margin:6px 0">No Android</h4><p>Abra no Chrome, toque nos três pontinhos do canto e escolha “Adicionar à tela inicial” ou “Instalar app”.</p><p class="muted">Depois disso, o Secalyn aparece como um app no seu celular.</p></div>`);
-  if(k==="inicio") { openSheet(`<h1 id="sheettitle">Data de início</h1><div class="body" style="margin-top:10px"><p>Mude a data se você começou em outro dia ou quer recomeçar o protocolo. Suas marcações e medidas continuam salvas.</p><input type="date" id="newstart" value="${S.start}"><button class="cta alt" style="margin-top:14px" id="savestart">Salvar data</button></div>`); $("#savestart").onclick=()=>{ const v=$("#newstart").value; if(v){ S.start=v; save(); viewDay=null; closeSheet(); render(); toast("Data de início salva"); } }; return; }
-  if(k==="suporte") return openSheet(`<h1 id="sheettitle">Suporte</h1><div class="body" style="margin-top:10px"><p>Ficou com alguma dúvida sobre o protocolo ou o seu pedido? Fale com a gente:</p><a class="cta alt" href="mailto:${SUPORTE}">${SUPORTE}</a></div>`);
-  if(k==="apagar") { openSheet(`<h1 id="sheettitle">Apagar meus dados</h1><div class="body" style="margin-top:10px"><p>Isso apaga sua data de início, marcações, medidas, check-ins e listas deste celular. Não dá para desfazer.</p><button class="cta alt" id="wipe">Apagar tudo</button></div>`); $("#wipe").onclick=()=>{ try{localStorage.removeItem(KEY);}catch(e){} S=load(); closeSheet(); tab="hoje"; render(); }; return; }
+  if(k==="checkin") return openCheckin(Math.max(1,Math.ceil(Math.min(Math.max(currentDay(),1),totalDays())/7)));
+  if(k==="plano"){ closeSheet(); obPotes=S.potes; editingPlan=true; render(); window.scrollTo(0,0); return; }
+  if(k==="pilares") return plain("Os 4 pilares",`<p class="muted" style="margin-bottom:14px">O primeiro é o Secalyn. Os outros três ajudam você a aproveitá-lo.</p>${PILARES.map(p=>`<div class="pillar"><span class="pe2 ${p[3]}">${p[0]}</span><div><b>${p[1]}</b><p>${p[2]}</p></div></div>`).join("")}`);
+  if(k==="faq") return plain("Dúvidas",`<div style="margin-top:12px">${FAQ.map(f=>`<div class="faq"><b>${f[0]}</b><p>${f[1]}</p></div>`).join("")}</div>`);
+  if(k==="instalar") return plain("Na tela inicial",`<div class="pillar" style="margin-top:12px"><span class="pe2 m-cafe">🍎</span><div><b>No iPhone</b><p>Abra este link no Safari, toque no botão de compartilhar (o quadrado com a seta) e escolha “Adicionar à Tela de Início”.</p></div></div><div class="pillar"><span class="pe2 m-almoco">🤖</span><div><b>No Android</b><p>Abra no Chrome, toque nos três pontinhos do canto e escolha “Adicionar à tela inicial” ou “Instalar app”.</p></div></div>`);
+  if(k==="suporte") return plain("Suporte",`<p style="margin:10px 0 16px">Ficou com alguma dúvida sobre o protocolo ou o seu pedido? Fale com a gente:</p><a class="cta wine" href="mailto:${SUPORTE}">${SUPORTE}</a>`);
+  if(k==="inicio"){ plain("Data de início",`<p style="margin:10px 0 14px">Mude a data se você começou em outro dia ou quer recomeçar. Suas marcações e medidas continuam salvas.</p><input type="date" id="newstart" value="${S.start}"><button class="cta wine press" style="margin-top:14px" id="savestart">Salvar data</button>`); $("#savestart").onclick=()=>{ const v=$("#newstart").value; if(v){ S.start=v; save(); viewDay=null; closeSheet(); render(true); toast("Data de início salva"); } }; return; }
+  if(k==="apagar"){ plain("Apagar dados",`<p style="margin:10px 0 16px">Isso apaga sua data de início, marcações, medidas, check-ins e listas deste celular. Não dá para desfazer.</p><button class="cta wine" id="wipe">Apagar tudo</button>`); $("#wipe").onclick=()=>{ try{localStorage.removeItem(KEY);}catch(e){} S=load(); closeSheet(); tab="hoje"; render(true); }; return; }
 }
 function openCheckin(w){
-  ciWeek=w; const a=S.checkins[w]||[];
-  const days=[1,2,3,4,5,6,7].map(i=>(w-1)*7+i);
+  const W=Math.ceil(totalDays()/7); w=Math.max(1,Math.min(W,w));
+  const a=S.checkins[w]||[], days=[1,2,3,4,5,6,7].map(i=>(w-1)*7+i);
   const caps=days.filter(d=>S.days[d]?.caps).length, wat=days.filter(d=>(S.days[d]?.water||0)>=8).length;
-  const cr=days.map(d=>S.days[d]?.crave).filter(v=>v!==null&&v!==undefined); const avg=cr.length?(cr.reduce((x,y)=>x+y,0)/cr.length).toFixed(1).replace(".",","):"–";
-  openSheet(`<h1 id="sheettitle">Check-in</h1>
-  <div class="seg" style="margin:10px 20px 0">${[1,2,3].map(k=>`<button data-ciw="${k}" aria-pressed="${k===w}">Semana ${k}</button>`).join("")}</div>
-  <div class="body"><div class="delta" style="margin:14px 0 4px"><div><b>${caps}/7</b><span>dias com Secalyn</span></div><div><b>${wat}/7</b><span>dias com 8 copos</span></div><div><b>${avg}</b><span>vontade média</span></div></div>
-  ${CHECKIN_Q.map((q,i)=>`<div class="q"><label for="ci${i}">${q}</label><textarea id="ci${i}" data-ci="${i}">${esc(a[i]||"")}</textarea></div>`).join("")}
-  <button class="cta alt" style="margin-top:14px" id="cisave">Salvar check-in</button></div>`);
-  $("#cisave").onclick=()=>{ S.checkins[w]=CHECKIN_Q.map((_,i)=>$("#ci"+i).value); save(); toast("Check-in salvo"); closeSheet(); };
+  const cr=days.map(d=>S.days[d]?.crave).filter(v=>v!==null&&v!==undefined); const avg=cr.length?(cr.reduce((x,y)=>x+y,0)/cr.length):null;
+  const face=avg===null?"–":avg<2?"😌":avg<4?"🙂":avg<6?"😐":avg<8?"😋":"🤤";
+  plain("Check-in",`<div class="wnav"><button data-ciw="${w-1}" ${w<=1?"disabled":""} aria-label="Semana anterior">‹</button><b>Semana ${w} de ${W}</b><button data-ciw="${w+1}" ${w>=W?"disabled":""} aria-label="Próxima semana">›</button></div>
+  <div class="stats3"><div><span>💊</span><b>${caps}/7</b><small>com Secalyn</small></div><div><span>💧</span><b>${wat}/7</b><small>meta de água</small></div><div><span>${face}</span><b>vontade</b><small>média da semana</small></div></div>
+  ${CHECKIN_Q.map((q,i)=>`<div class="q"><label for="ci${i}">${q}</label><textarea id="ci${i}">${esc(a[i]||"")}</textarea></div>`).join("")}
+  <button class="cta wine press" style="margin-top:16px" id="cisave">Salvar check-in</button>`);
+  $("#cisave").onclick=()=>{ S.checkins[w]=CHECKIN_Q.map((_,i)=>$("#ci"+i).value); save(); toast("📝 Check-in salvo"); closeSheet(); if(tab==="mais") render(); };
 }
 
 /* ===== folha ===== */
 let lastFocus=null;
-function openSheet(html){ lastFocus=document.activeElement; const s=$("#sheet"); s.innerHTML=`<div class="sheet-h"><span class="grab"></span><button class="close" data-close aria-label="Fechar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>${html}`; s.scrollTop=0; s.classList.add("open"); $("#sheetbg").classList.add("open"); document.body.style.overflow="hidden"; setTimeout(()=>$(".close",s).focus(),50); }
-function closeSheet(){ $("#sheet").classList.remove("open"); $("#sheetbg").classList.remove("open"); document.body.style.overflow=""; if(lastFocus) try{lastFocus.focus();}catch(e){} }
+function openSheet(html){ lastFocus=document.activeElement; const s=$("#sheet"); s.innerHTML=`<span class="grab"></span><button class="close" data-close aria-label="Fechar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button>${html}`; s.scrollTop=0; s.classList.add("open"); $("#sheetbg").classList.add("open"); document.body.style.overflow="hidden"; setTimeout(()=>{ const c=$(".close",s); c&&c.focus({preventScroll:true}); },60); }
+function closeSheet(){ $("#sheet").classList.remove("open"); $("#sheetbg").classList.remove("open"); document.body.style.overflow=""; if(lastFocus) try{lastFocus.focus({preventScroll:true});}catch(e){} }
 
 /* ===== eventos ===== */
 document.addEventListener("click",e=>{
-  const t=e.target.closest("button,[data-goto]"); if(!t) return;
-  const ds=t.dataset;
-  if(ds.tab){ tab=ds.tab; sub=null; if(tab==="hoje") viewDay=null; render(); window.scrollTo(0,0); return; }
+  const t=e.target.closest("button,[data-goto]"); if(!t||t.disabled) return; const ds=t.dataset;
+  if(ds.tab){ tab=ds.tab; if(tab==="hoje") viewDay=null; render(true); window.scrollTo(0,0); return; }
   if(ds.close!==undefined){ closeSheet(); return; }
   if(ds.recipe!==undefined){ openRecipe(+ds.recipe); return; }
-  if(ds.nav){ const cur=Math.min(Math.max(currentDay(),1),21); const n=(viewDay??cur)+(+ds.nav); viewDay=Math.max(1,Math.min(21,n)); render(); return; }
-  if(ds.goday){ viewDay=+ds.goday; render(); return; }
-  if(ds.today!==undefined){ viewDay=null; render(); return; }
-  if(ds.review!==undefined){ viewDay=21; render(); window.scrollTo(0,0); return; }
-  if(ds.caps!==undefined){ const n=viewDay??Math.min(currentDay(),21); const d=dayData(n); d.caps=!d.caps; save(); vibrate(); render(); if(d.caps) toast("Secalyn do dia "+n+" marcado"); return; }
-  if(ds.water){ const n=viewDay??Math.min(currentDay(),21); const d=dayData(n); const v=+ds.water; d.water=(d.water===v)?v-1:v; save(); vibrate(); render(); if(d.water===8) toast("Meta de água do dia batida"); return; }
-  if(ds.task!==undefined){ const n=viewDay??Math.min(currentDay(),21); const d=dayData(n); d.task=!d.task; save(); vibrate(); render(); return; }
-  if(ds.goto){ tab=ds.goto; render(); window.scrollTo(0,0); return; }
+  if(ds.ing!==undefined){ t.setAttribute("aria-pressed", t.getAttribute("aria-pressed")!=="true"); return; }
+  if(ds.plan){ obPotes=+ds.plan; render(); return; }
+  if(ds.other){ obOther=Math.max(1,Math.min(24,obOther+(+ds.other))); obPotes=obOther; render(); return; }
+  if(ds.nav){ viewDay=Math.max(1,Math.min(totalDays(),activeDay()+(+ds.nav))); if(viewDay===Math.min(currentDay(),totalDays())) viewDay=null; render(true); window.scrollTo({top:0,behavior:"smooth"}); return; }
+  if(ds.today!==undefined){ viewDay=null; render(true); return; }
+  if(ds.review!==undefined){ viewDay=totalDays(); render(true); window.scrollTo(0,0); return; }
+  if(ds.caps!==undefined){ const n=activeDay(), d=dayData(n); d.caps=!d.caps; save(); vibrate(d.caps?30:10); const y=window.scrollY; render(); window.scrollTo(0,y); if(d.caps){ confetti($("[data-caps]")); toast("💊 Secalyn do dia "+n+" marcado"); checkComplete(d); } return; }
+  if(ds.water||ds.wadd){ const n=activeDay(), d=dayData(n); const before=d.water; if(ds.water){ const v=+ds.water; d.water=(d.water===v)?v-1:v; } else d.water=Math.max(0,Math.min(8,d.water+(+ds.wadd))); save(); vibrate(); const y=window.scrollY; render(); window.scrollTo(0,y); if(d.water===8&&before<8){ confetti($(".bottle")); toast("💧 Meta de água batida!"); checkComplete(d); } return; }
+  if(ds.task!==undefined){ const n=activeDay(), d=dayData(n); d.task=!d.task; save(); vibrate(); const y=window.scrollY; render(); window.scrollTo(0,y); if(d.task){ toast("✨ Tarefa concluída"); checkComplete(d); } return; }
+  if(ds.crave!==undefined){ const n=activeDay(), d=dayData(n); d.crave=+ds.crave; save(); document.querySelectorAll("[data-crave]").forEach(b=>b.setAttribute("aria-pressed",b===t)); vibrate(); return; }
+  if(ds.goto){ tab=ds.goto; render(true); window.scrollTo(0,0); return; }
   if(ds.checkin){ openCheckin(+ds.checkin); return; }
   if(ds.ciw){ openCheckin(+ds.ciw); return; }
   if(ds.filter){ recFilter=ds.filter; render(); return; }
-  if(ds.metric){ measMetric=ds.metric; render(); return; }
+  if(ds.metric){ measMetric=ds.metric; const y=window.scrollY; render(); window.scrollTo(0,y); return; }
   if(ds.week){ shopWeek=ds.week; render(); return; }
-  if(ds.shop){ S.shop[ds.shop]=!S.shop[ds.shop]; save(); t.setAttribute("aria-pressed",S.shop[ds.shop]); return; }
+  if(ds.shop){ S.shop[ds.shop]=!S.shop[ds.shop]; save(); vibrate(); const y=window.scrollY; render(); window.scrollTo(0,y); return; }
   if(ds.clearshop!==undefined){ Object.keys(S.shop).forEach(k=>{ if(k.startsWith(shopWeek+"|")) delete S.shop[k]; }); save(); render(); return; }
   if(ds.sub){ openSub(ds.sub); return; }
 });
+function checkComplete(d){ if(d.caps&&d.task&&d.water>=8){ setTimeout(()=>{ toast("🎉 Dia completo!"); confetti($(".goals")||document.body); vibrate(40); },500); } }
 $("#sheetbg").addEventListener("click",closeSheet);
-document.addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#sheet").classList.contains("open")) closeSheet(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&$("#sheet").classList.contains("open")) closeSheet(); });
 document.addEventListener("input",e=>{
   const t=e.target;
-  if(t.id==="crave"){ const n=viewDay??Math.min(currentDay(),21); dayData(n).crave=+t.value; $("#cv").textContent=t.value; save(); }
-  if(t.id==="note"){ const n=viewDay??Math.min(currentDay(),21); dayData(n).note=t.value; save(); }
-  if(t.id==="rq"){ recQuery=t.value; const pos=t.selectionStart; render(); const r=$("#rq"); r.focus(); try{r.setSelectionRange(pos,pos);}catch(_){} }
+  if(t.id==="note"){ dayData(activeDay()).note=t.value; save(); }
+  if(t.id==="rq"){ recQuery=t.value; const p=t.selectionStart; render(); const r=$("#rq"); r.focus(); try{r.setSelectionRange(p,p);}catch(_){} }
   if(t.dataset.meas!==undefined){ const d=t.dataset.meas; S.meas[d]=S.meas[d]||{}; S.meas[d][t.dataset.k]=t.value; save(); }
 });
-document.addEventListener("change",e=>{ if(e.target.dataset.meas!==undefined && tab==="medidas"){ const y=window.scrollY; render(); window.scrollTo(0,y); } });
-document.addEventListener("visibilitychange",()=>{ if(!document.hidden && tab==="hoje" && viewDay===null) render(); });
-render();
+document.addEventListener("change",e=>{ if(e.target.dataset.meas!==undefined&&tab==="medidas"){ const y=window.scrollY, id=document.activeElement&&document.activeElement.id; render(); window.scrollTo(0,y); } });
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden&&tab==="hoje"&&viewDay===null&&!$("#sheet").classList.contains("open")) render(); });
+render(true);
 </script>
 </body>
 </html>
